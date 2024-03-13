@@ -138,14 +138,12 @@ return [
 			'name' 			=> 'Name',
 			'email' 		=> 'Email',
             'ph_num'         =>'Phone No.',
-            'phone'         =>'Phone No. 1',
-            'phone2'         =>'Phone No. 2',
 			'action' 		=> 'Action',
             'created_at'    =>'Created At',
 			'created_by' 	=> 'Created By',
 			'is_type'		=> 'Type',
 			'phone_number' 	=> 'Phone Number',
-			'opening_blance'=> 'Opening Blance',
+			'opening_balance'=> 'Opening Blance',
             'add' 	=> 'Add Supplier',
             'edit' => 'Edit Supplier',
             'select_address' => 'Select City',
@@ -153,272 +151,24 @@ return [
 		],
 	],
 
-    'device-management' => [
-		'title' 	=> 'Device Management',
+    'entry-management' => [
+		'title' 	=> 'Entry Management',
 		'fields' 	=> [
 			'add' 	=> 'Add New',
-			'list' 	=> 'Device List',
-			'alter_list' 	=> 'Alter List',
+			'list' 	=> 'Entry List',
 		],
 	],
 
-	'device'  => [
-		'title'  => 'Devices',
-        'device' => 'Device',
-		'device_details' => 'Device Details',
-        'select_staff'  => 'Select Staff',
-		'fields' => [
-			'name' 			=> 'Name',
-			'staff_name' 		=> 'Assigned Staff Name',
-            'device_id'         =>'Device ID',
-            'device_ip'       =>'Device IP',
-            'pin'  => 'PIN Number',
-			'action' 		=> 'Action',
-            'created_at'    =>'Created At',
-			'created_by' 	=> 'Created By',
-            'add' 	=> 'Add New',
-            'edit' => 'Edit Device',
-		],
-	],
 
-    'master-management' => [
-		'title' => 'Master Management',
+
+    'payment-receipt-management' => [
+		'title' => 'Payment Receipt',
 		'fields' => [
 		],
 	],
 
-    'address' => [
-		'title' => 'City Management',
-        'address'=>'City',
-		'fields' => [
-			'title' => 'Title',
-            'add' 	=> 'Add New',
-            'edit' => 'Edit City',
-            'list-title'=>'City List',
-            'list'=> [
-                'address'=>'City',
-                'no_of_customer' =>'No. of Party',
-                'created_at'=>'Created At',
-            ]
-		],
-	],
 
-    'category' => [
-		'title' => 'Category Management',
-        'category'=>'Category',
-        'list-title'=>'Category List',
-        'add' 	=> 'Add New',
-		'fields' => [
-			'name' => 'Name',
-            'total_product' => 'Total Item',
-            'created_at'=>'Created At',
-            'add' 	=> 'Add New Category',
-            'edit' => 'Edit Category',
-		],
-	],
-
-    'product-management' => [
-		'title' => 'Item Management',
-		'fields' => [
-			'add' => 'Add New',
-			'list' => 'Item List',
-		],
-	],
-
-	'product' => [
-		'title' => 'Items',
-        'product' => 'Item',
-        'select_item'  => 'Select Item',
-        'select_category'  => 'Select Category',
-		'fields' => [
-			'name' 				=> 'Item Name',
-			'price' 			=> 'Purchase Price',
-			'descripation' 		=> 'Descripation',
-			'image' 			=> 'Image',
-			'choose_file' 		=> 'Choose product image...',
-			'images' 			=> 'Item Images',
-			'product-category' 	=> 'Item Category',
-            'category_name' 	=> 'Category Name',
-            'order_count' 	=> 'No. Of Invoice',
-            'from_product' 	=> 'From Item',
-            'to_product' 	=> 'To Item',
-            'created_at'=>'Created At',
-            'add' 	=> 'Add New Item',
-            'merge' 	=> 'Merge Item',
-            'edit' => 'Edit Category',
-            'list' 	=> 'Item List',
-		],
-	],
-
-    'order-management' => [
-		'title' 	=> 'Invoice management',
-		'fields' 	=> [
-			'add' 	=> 'New Invoice',
-			'list' 	=> 'Invoice List',
-		],
-	],
-
-	'order'  => [
-		'title'  => 'Orders',
-		'order'  => 'Order',
-        'invoice'  => 'Invoice',
-        'recycle'  => 'Recycle',
-        'create_new_order' => 'Create New Order',
-        'new_order'  => 'New Order',
-        'edit_order' => 'Edit Order',
-        'share_invoice'  => 'Share Invoice',
-        'list'=>'Order List',
-		'fields' => [
-            'select_customer'=>'Select Party',
-            'select_product'=>'Select Item',
-			'placeholder_search' => 'Search by product name ....',
-			'order_id' 		=> 'Order Id',
-			'customer' 		=> 'Party',
-			'customer_name'	=> 'Party Name',
-			'product' 		=> 'Item',
-			'total_products'=> 'No of products',
-			'product_name' 	=> 'Item Name',
-            'product_id' 	=> 'Item Name',
-			'products' 		=> 'Items',
-			'quantity' 		=> 'Quantity',
-			'price' 		=> 'Price',
-            'amount' 		=> 'Amount',
-			'sub_total'		=> 'Amount',
-            'sub_total_amount'	=> 'Sub Total',
-			'entry_date'	=> 'Entry Date',
-			'total'			=> 'Total',
-			'total_amount'	=> 'Total Amount',
-			'order_type'	=> 'Order Type',
-			'total_price'	=> 'Total Price',
-            'thaila'	    => 'Thaila',
-            'round_off'	    => 'Round Off',
-			'grand_total'	=> 'GRAND TOTAL',
-			'invoice_date'  => 'Invoice Date',
-			'invoice_number'=> 'Invoice Number',
-			'address'		=> 'City',
-			'phone_number'	=> 'Phone Number',
-			'email_address' => 'Email Address',
-			'order_note'  	=> 'Notes',
-			'date' => 'Date',
-            'duration' => 'Duration',
-			'sno'=>'SNo.',
-			'number_of_item'=>'Number of item',
-            'created_at'=>'Created At',
-            'deleted_at'=>'Deleted At',
-            'deleted_by'=>'Deleted By',
-            'add' 	=> 'Add New',
-            'edit' => 'Edit Invoice',
-            'from_date' => 'From Date',
-			'to_date' => 'To Date',
-		],
-	],
-
-	'reports' => [
-		'title' => 'Report',
-        'order' => 'Order',
-        'order_sell_record' => 'Invoice Sell Record',
-        'no_of_order_sold' => 'No of Invoice Sold',
-        'yearly' => 'Yearly',
-        'monthly' => 'Monthly',
-        'weekly' => 'Weekly',
-        'daily' => 'Daily',
-        'total_order' => 'Total Order',
-        'total_product' => 'Total Item',
-        'total_quantity'=> 'Total Quantity',
-        'total_customer' => 'Total Party',
-        'no_of_devices' => 'No. of Devices',
-        'today' => 'Today',
-        '7days' => '7 Days',
-        '30days' => '30 Days',
-        'customer' => 'Party',
-        'total_amount'	=> 'Total Amount',
-        'total_order_amount'	=> 'Total Sell Amount',
-        'sale_amount'	=> 'Sale Amount',
-        'sale_percent'	=> 'Sale Percentage',
-        'products' => 'Items',
-        'title' => 'Report',
-	],
-
-	'report-management' => [
-		'title' 	=> 'Report Management',
-		'fields' 	=> [
-			'customer_report' => 'Party Report',
-            'category_report' => 'Category Report',
-            'product_report' => 'Item Report',
-			'list' 			  => 'List All Reports',
-		],
-	],
-
-    'modified-management' => [
-		'title' 	=> 'Modified Management',
-		'fields' 	=> [
-            'customer_modified' => 'Modified Party',
-            'product_modified' => 'Modified Item',
-		],
-	],
-
-	'master-management' => [
-		'title' 	=> 'Master Management',
-	],
-
-    'settings' => [
-		'title' 	=> 'Settings',
-        'manage_settings'=>'Manage Settings'
-	],
-
-    'backup' => [
-		'title' 	=> 'Backup',
-        'backup-management' => 'Database Backup Management',
-	],
-
-
-	'brand_master'  => [
-		'title'  => 'Brand Master',
-		'fields' 	=> [
-			'name' => 'Brand Name',
-		],
-	],
-
-	'group_master'  => [
-		'title'  => 'Group Master',
-		'fields' 	=> [
-			'name' => 'Group Name',
-			'products' => 'Items',
-		],
-	],
-	'category_master'  => [
-		'title'  => 'Categories',
-		'fields' 	=> [
-			'name' => 'Name',
-		],
-	],
-	'logActivities'  => [
-		'title'  => 'Log Activities',
-		'fields' 	=> [
-			'name' => 'Staff Name',
-			'subject' => 'Subject',
-			'url' => 'Url',
-			'method' => 'Method',
-			'agent' => 'User Browser',
-		],
-	],
-
-
-	'report'  => [
-		'title'  => 'Reports',
-		'report_for_customer'  => 'Report for customer',
-		'customer_wise_report'  => 'Party wise report',
-		'filter_customer_list'  => 'Filter customer list',
-		'filter_area_list'      => 'Filter area list',
-	],
-
-
-
-    'qa_company_name' 	=> 'Kanak Bangles',
-	'qa_save_invoice' 	=> 'Save Invoice',
-    'qa_temp_save_invoice' 	=> 'Save Temporary Invoice',
-    'qa_disconnected' => 'Disconnected',
-    'qa_connected' => 'Connected',
+    'qa_company_name' 	=> 'Music Stock Supplier',
     'qa_print_invoice' 	=> 'Print Invoice',
 	'qa_sr_no' 	=> 'Sr.No.',
 	'qa_create' => 'Create',
@@ -467,8 +217,6 @@ return [
 	'qa_reports' => 'Reports',
 	'qa_entry_date' => 'Entry date',
 	'qa_amount' => 'Amount',
-	'qa_income_categories' => 'Income categories',
-	'qa_monthly_report' => 'Monthly report',
 	'qa_companies' => 'Companies',
 	'qa_address' => 'City',
 	'qa_website' => 'Website',
@@ -506,13 +254,8 @@ return [
 	'qa_message' => 'Message',
 	'qa_send' => 'Send',
 	'qa_reply' => 'Reply',
-	'qa_client_management' => 'Party management',
-	'qa_client_management_settings' => 'Party management settings',
 	'qa_country' => 'Country',
-	'qa_client_status' => 'Party status',
-	'qa_clients' => 'Parties',
 	'qa_file' => 'File',
-	'qa_client' => 'Party',
 	'qa_start_date' => 'Start date',
 	'qa_current_password' => 'Current password',
 	'qa_new_password' => 'New password',
@@ -557,21 +300,17 @@ return [
 	'qa_not_approved_p' => 'Your account is still not approved by administrator. Please, be patient and try again later.',
 	'qa_there_were_problems_with_input' => 'There were problems with input',
 	'qa_whoops' => 'Whoops!',
-	'qa_file_contains_header_row' => 'File contains header row?',
 	'qa_csvImport' => 'CSV Import',
 	'qa_csv_file_to_import' => 'CSV file to import',
 	'qa_parse_csv' => 'Parse CSV',
 	'qa_import_data' => 'Import data',
 	'qa_imported_rows_to_table' => 'Imported :rows rows to :table table',
-	'qa_subscription-billing' => 'Subscriptions',
 	'qa_subscription-payments' => 'Payments',
 	'qa_basic_crm' => 'Basic CRM',
-	'qa_customers' => 'Parties',
-	'qa_customer' => 'Party',
+	'qa_suppliers' => 'Suppliers',
+	'qa_supplier' => 'Supplier',
 	'qa_select_all' => 'Select all',
 	'qa_deselect_all' => 'Deselect all',
-	'qa_team-management' => 'Teams',
-	'qa_team-management-singular' => 'Team',
 	'quickadmin_title' => 'Dashboard Widgets',
 	'qa_filter' => 'Filter',
 	'qa_debit' => 'Debit',
@@ -585,7 +324,5 @@ return [
     'qa_sn'=>'Sn.',
     'qa_no_record'=>'No Record Found!',
     'qa_record_found'=>'Record Found!',
-    'thaila' => 'थैला',
-
 
 ];

@@ -34,24 +34,40 @@
 
         @can('supplier_access')
         <li class="{{ Request::is('supplier*') ? 'active' : '' }}">
-            <a href="{{ route('staff.index') }}" class="nav-link">
+            <a href="{{ route('supplier.index') }}" class="nav-link">
                 <x-side-bar-svg-icon icon="staff" />
                 <span>@lang('quickadmin.supplier-management.title')</span>
             </a>
         </li>
         @endcan
 
+        @can('entry_access')
+        <li class="{{ Request::is('entry*') ? 'active' : '' }}">
+            <a href="{{ route('entry.index') }}" class="nav-link">
+                <x-side-bar-svg-icon icon="staff" />
+                <span>@lang('quickadmin.entry-management.title')</span>
+            </a>
+        </li>
+        @endcan
 
-        @can('setting_access')
+        @can('payment_receipt_access')
+        <li class="{{ Request::is('payment-receipt*') ? 'active' : '' }}">
+            <a href="{{ route('payment-receipt.index') }}" class="nav-link">
+                <x-side-bar-svg-icon icon="staff" />
+                <span>@lang('quickadmin.payment-receipt-management.title')</span>
+            </a>
+        </li>
+        @endcan
+
+
+        {{-- @can('setting_access')
         <li class="{{ Request::is('settings*') ? 'active' : '' }}">
             <a href="{{ route('settings') }}" class="nav-link">
                 <x-side-bar-svg-icon icon="setting" />
                 <span>@lang('quickadmin.settings.title')</span>
             </a>
         </li>
-        @endcan
-
-
+        @endcan --}}
 
         <li class="{{ Request::is('logout*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('logout') }}">

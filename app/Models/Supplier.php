@@ -43,4 +43,9 @@ class Supplier extends Model
         });
     }
 
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
+
 }

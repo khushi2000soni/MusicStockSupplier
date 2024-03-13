@@ -46,6 +46,10 @@ Route::middleware(['auth','PreventBackHistory'])->group(function () {
     Route::post('/settings/update',[SettingController::class,'update'])->name('settings.update');
 
     Route::resource('supplier',SupplierController::class);
+    Route::get('/supplier-printView',[SupplierController::class,'printView'])->name('supplier.print');
+    Route::get('/supplier-export',[SupplierController::class,'export'])->name('supplier.export');
+
+
     Route::resource('entry',EntryController::class);
     Route::resource('payment-receipt',PaymentReceiptController::class);
 });
