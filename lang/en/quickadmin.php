@@ -159,6 +159,22 @@ return [
 		],
 	],
 
+    'entries'  => [
+		'title'  => 'Entries',
+        'entry' => 'Entry',
+		'entry_details'  	  		=> 'Entry Details',
+		'fields' => [
+			'amount' 		=> 'Amount',
+			'remark' 		=> 'Remark',
+			'action' 		=> 'Action',
+            'created_at'    =>'Created At',
+			'created_by' 	=> 'Created By',
+			'supplier_name'		=> 'Supplier Name',
+            'add' 	=> 'Add Entry',
+            'edit' => 'Edit Entry',
+            'select_supplier' => 'Select Supplier',
+		],
+	],
 
 
     'payment-receipt-management' => [

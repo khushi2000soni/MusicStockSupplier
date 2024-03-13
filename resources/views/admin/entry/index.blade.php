@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('title')@lang('quickadmin.supplier-management.fields.list')@endsection
+@section('title')@lang('quickadmin.entry-management.fields.list')@endsection
 @section('customCss')
 <meta name="csrf-token" content="{{ csrf_token() }}" >
 <link rel="stylesheet" href="{{ asset('admintheme/assets/css/printView-datatable.css')}}">
@@ -96,24 +96,24 @@
                 <div class="card-body">
                     <div class="row align-items-center mb-4 cart_filter_box pb-3">
                         <div class="col">
-                            <h4>@lang('quickadmin.supplier-management.fields.list')</h4>
+                            <h4>@lang('quickadmin.entry-management.fields.list')</h4>
                         </div>
 
                         <div class="col-md-auto col-12 mt-md-0 mt-3">
                             <div class="row align-items-center">
                                 <div class="col-auto px-md-1 pr-1">
-                                    @can('supplier_create')
-                                    <button type="button" class="addnew-btn addRecordBtn sm_btn circlebtn"  data-href="{{ route('supplier.create')}}" title="@lang('quickadmin.qa_add_new')"><x-svg-icon icon="add" /></button>
+                                    @can('entry_create')
+                                    <button type="button" class="addnew-btn addRecordBtn sm_btn circlebtn"  data-href="{{ route('entry.create')}}" title="@lang('quickadmin.qa_add_new')"><x-svg-icon icon="add" /></button>
                                     @endcan
                                 </div>
                                 <div class="col-auto px-1">
-                                    @can('supplier_print')
-                                    <a href="{{ route('supplier.print') }}" class="btn printbtn h-10 col circlebtn"  id="print-button" title="@lang('quickadmin.qa_print')"> <x-svg-icon icon="print" /></a>
+                                    @can('entry_print')
+                                    <a href="{{ route('entry.print') }}" class="btn printbtn h-10 col circlebtn"  id="print-button" title="@lang('quickadmin.qa_print')"> <x-svg-icon icon="print" /></a>
                                     @endcan
                                 </div>
                                 {{-- <div class="col-auto pl-1">
-                                    @can('supplier_export')
-                                    <a href="{{ route('supplier.export') }}" class="btn excelbtn h-10 col circlebtn"  id="excel-button" title="@lang('quickadmin.qa_excel')"><x-svg-icon icon="excel" /></a>
+                                    @can('entry_export')
+                                    <a href="{{ route('entry.export') }}" class="btn excelbtn h-10 col circlebtn"  id="excel-button" title="@lang('quickadmin.qa_excel')"><x-svg-icon icon="excel" /></a>
                                     @endcan
                                 </div> --}}
                             </div>
@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="table-responsive fixed_Search">
-                        {{$dataTable->table(['class' => 'table dt-responsive supplierTable', 'style' => 'width:100%;','id'=>'dataaTable'])}}
+                        {{$dataTable->table(['class' => 'table dt-responsive entryTable', 'style' => 'width:100%;','id'=>'dataaTable'])}}
                     </div>
                 </div>
               </div>
@@ -162,7 +162,7 @@ $(document).ready(function () {
         e.preventDefault();
         var iframe = document.createElement('iframe');
         iframe.style.display = 'none';
-        iframe.src = '/supplier-export'; // Replace with the actual URL for your export route
+        iframe.src = '/entry-export'; // Replace with the actual URL for your export route
         document.body.appendChild(iframe);
     });
 
@@ -177,13 +177,22 @@ $(document).ready(function () {
                 if (response.success) {
                     $('.popup_render_div').html(response.htmlView);
                     $('.popup_render_div #centerModal').modal('show');
+                    $(".get-supplier-select").select2({
+                        dropdownParent: $('.popup_render_div #centerModal') // Set the dropdown parent to the modal
+                    }).on('select2:open', function () {
+                        let a = $(this).data('select2');
+                        if (!$('.select2-link').length) {
+                            a.$results.parents('.select2-results')
+                            .append('<div class="select2-link2"><button class="btns get-supplier close-select2"><i class="fa fa-plus-circle"></i> Add New</button></div>');
+                        }
+                    });
                 }
             }
         });
     });
 
 
-    $("body").on("click", ".edit-supplier-btn", function () {
+    $("body").on("click", ".edit-entry-btn", function () {
         var hrefUrl = $(this).attr('data-href');
         $.ajax({
             type: 'get',
@@ -193,16 +202,22 @@ $(document).ready(function () {
                 if(response.success) {
                     $('.popup_render_div').html(response.htmlView);
                     $('#editModal').modal('show');
+                    $(".get-supplier-select").select2({
+                            dropdownParent: $('.popup_render_div #editModal') // Set the dropdown parent to the modal
+                    });
+                    setTimeout(() => {
+                        $('.modal-backdrop').not(':first').remove();
+                    }, 300);
                 }
             }
         });
     });
 
-    /// Add Supplier
-    $(document).on('submit', '#centerModal #AddForm', function (e) {
+    /// Add Entry
+    $(document).on('submit', '#AddEntryForm', function (e) {
         e.preventDefault();
 
-        $("#centerModal #AddForm button[type=submit]").prop('disabled',true);
+        $("#AddEntryForm button[type=submit]").prop('disabled',true);
         $(".error").remove();
         $(".is-invalid").removeClass('is-invalid');
         var formData = $(this).serialize();
@@ -218,31 +233,29 @@ $(document).ready(function () {
                     $('#centerModal').modal('hide');
                     var alertType = response['alert-type'];
                     var message = response['message'];
-                    var title = "{{ trans('quickadmin.suppliers.supplier') }}";
+                    var title = "{{ trans('quickadmin.entries.entry') }}";
                     showToaster(title,alertType,message);
-                    $('#centerModal #AddForm')[0].reset();
-                   // location.reload();
-                   DataaTable.ajax.reload();
-                   $("#centerModal #AddForm button[type=submit]").prop('disabled',false);
+                    $('#centerModal #AddEntryForm')[0].reset();
+                    DataaTable.ajax.reload();
+                    $("#centerModal #AddEntryForm button[type=submit]").prop('disabled',false);
             },
             error: function (xhr) {
                 var errors= xhr.responseJSON.errors;
                 console.log(xhr.responseJSON);
-
                 for (const elementId in errors) {
-                    $("#centerModal #"+elementId).addClass('is-invalid');
+                    //$("#centerModal #"+elementId).addClass('is-invalid');
                     var errorHtml = '<div><span class="error text-danger">'+errors[elementId]+'</span></';
                     $(errorHtml).insertAfter($("#centerModal #"+elementId).parent());
                 }
-                $("#centerModal #AddForm button[type=submit]").prop('disabled',false);
+                $("#centerModal #AddEntryForm button[type=submit]").prop('disabled',false);
             }
         });
     });
 
 
-    $(document).on('submit', '#EditForm', function (e) {
+    $(document).on('submit', '#EditEntryForm', function (e) {
         e.preventDefault();
-        $("#EditForm button[type=submit]").prop('disabled',true);
+        $("#EditEntryForm button[type=submit]").prop('disabled',true);
         $(".error").remove();
         $(".is-invalid").removeClass('is-invalid');
         var formData = $(this).serialize();
@@ -258,23 +271,23 @@ $(document).ready(function () {
                     $('#editModal').modal('hide');
                     var alertType = response['alert-type'];
                     var message = response['message'];
-                    var title = "{{ trans('quickadmin.suppliers.supplier') }}";
+                    var title = "{{ trans('quickadmin.entries.entry') }}";
                     showToaster(title,alertType,message);
-                    $('#EditForm')[0].reset();
+                    $('#EditEntryForm')[0].reset();
                     //location.reload();
                     DataaTable.ajax.reload();
-                    $("#EditForm button[type=submit]").prop('disabled',false);
+                    $("#EditEntryForm button[type=submit]").prop('disabled',false);
             },
             error: function (xhr) {
                 var errors= xhr.responseJSON.errors;
                 console.log(xhr.responseJSON);
 
                 for (const elementId in errors) {
-                    $("#EditForm #"+elementId).addClass('is-invalid');
+                    $("#EditEntryForm #"+elementId).addClass('is-invalid');
                     var errorHtml = '<div><span class="error text-danger">'+errors[elementId]+'</span></';
-                    $(errorHtml).insertAfter($("#EditForm #"+elementId).parent());
+                    $(errorHtml).insertAfter($("#EditEntryForm #"+elementId).parent());
                 }
-                $("#EditForm button[type=submit]").prop('disabled',false);
+                $("#EditEntryForm button[type=submit]").prop('disabled',false);
             }
         });
     });
@@ -303,20 +316,89 @@ $(document).ready(function () {
             success: function (response) {
                 var alertType = response['alert-type'];
                     var message = response['message'];
-                    var title = "{{ trans('quickadmin.suppliers.supplier') }}";
+                    var title = "{{ trans('quickadmin.entries.entry') }}";
                     showToaster(title,alertType,message);
                     DataaTable.ajax.reload();
-                    // location.reload();
-
             },
             error: function (xhr) {
                 // Handle error response
-                swal("{{ trans('quickadmin.suppliers.supplier') }}", 'some mistake is there.', 'error');
+                swal("{{ trans('quickadmin.entries.entry') }}", 'Something Went Wrong!', 'error');
             }
             });
         }
         });
     });
+
+
+    // Get Instant Supplier Form Modal
+
+    $(document).on('click', '.select2-container .get-supplier', function (e) {
+        e.preventDefault();
+        var gethis = $(this);
+        var hrefUrl = "{{ route('supplier.create') }}";
+        // $('.modal-backdrop').remove();
+        $.ajax({
+            type: 'get',
+            url: hrefUrl,
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    $('.suppliermodalbody').remove();
+                    $('.popup_render_div #supplier_id').select2('close');
+                    $('.popup_render_div').after('<div class="suppliermodalbody" style="display: block;"></div>');
+                    $('.suppliermodalbody').html(response.htmlView);
+                    $('.suppliermodalbody #centerModal').modal('show');
+                    $('.suppliermodalbody #centerModal').attr('style', 'z-index: 100000');
+                }
+            }
+        });
+    });
+
+    // Add Instant Supplier
+
+    $(document).on('submit', '.suppliermodalbody #centerModal #AddForm', function (e) {
+        e.preventDefault();
+
+        $(".suppliermodalbody #centerModal #AddForm button[type=submit]").prop('disabled',true);
+        $(".error").remove();
+        $(".is-invalid").removeClass('is-invalid');
+        var form = $(this);
+        var formData = $(this).serialize();
+        var formAction = $(this).attr('action');
+        $.ajax({
+            url: formAction,
+            type: 'POST',
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                    form.closest('#centerModal').modal('hide');
+                    var newOption2 = new Option(response.supplier.name, response.supplier.id, true, true);
+                    // Append the new option to the second select and trigger change event
+                    $('#AddEntryForm #supplier_id').append(newOption2).trigger('change');
+
+                    var alertType = response['alert-type'];
+                    var message = response['message'];
+                    var title = "{{ trans('quickadmin.suppliers.supplier') }}";
+                    showToaster(title,alertType,message);
+                    $('#AddForm')[0].reset();
+                    $("#AddForm button[type=submit]").prop('disabled',false);
+            },
+            error: function (xhr) {
+                var errors= xhr.responseJSON.errors;
+                console.log(xhr.responseJSON);
+                for (const elementId in errors) {
+                    $("#"+elementId).addClass('is-invalid');
+                    var errorHtml = '<div><span class="error text-danger">'+errors[elementId]+'</span></';
+                    $(errorHtml).insertAfter($("#"+elementId).parent());
+                }
+                $("#AddForm button[type=submit]").prop('disabled',false);
+            }
+        });
+    });
+
+
 
 });
 

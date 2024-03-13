@@ -2,14 +2,14 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalCenterTitle">@lang('quickadmin.suppliers.fields.edit')</h5>
+                <h5 class="modal-title" id="editModalCenterTitle">@lang('quickadmin.entries.fields.edit')</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" id="EditForm" action="{{route('supplier.update',$supplier->id)}}">
-                @include('admin.supplier.form')
+                <form method="post" id="EditEntryForm" action="{{route('entry.update',$entry->id)}}">
+                @include('admin.entry.form')
                 </form>
                 {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
             </div>

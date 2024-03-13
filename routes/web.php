@@ -51,6 +51,9 @@ Route::middleware(['auth','PreventBackHistory'])->group(function () {
 
 
     Route::resource('entry',EntryController::class);
+    Route::get('/entry-printView',[EntryController::class,'printView'])->name('entry.print');
+    Route::get('/entry-export',[EntryController::class,'export'])->name('entry.export');
+
     Route::resource('payment-receipt',PaymentReceiptController::class);
 });
 

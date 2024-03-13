@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Entry;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -22,57 +23,84 @@ class EntryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'entry.action')
-            ->setRowId('id');
+           ->addIndexColumn()
+           ->editColumn('supplier.name',function($entry){
+            $supplier = $entry->supplier;
+            return $supplier ? $supplier->name : '';
+            })
+            ->editColumn('amount',function($entry){
+                return $entry->amount ?? "";
+               })
+            ->editColumn('remark',function($entry){
+                return $entry->remark ?? "";
+            })
+           ->editColumn('created_at', function ($entry) {
+               return $entry->created_at->format('d-m-Y h:i A');
+           })
+           ->addColumn('action',function($entry){
+               $action='';
+               if (Gate::check('entry_edit')) {
+               $editIcon = view('components.svg-icon', ['icon' => 'edit'])->render();
+               $action .= '<button class="btn btn-icon btn-info edit-entry-btn p-1 mx-1" data-href="'.route('entry.edit', $entry->id).'">'.$editIcon.'</button>';
+               }
+               if (Gate::check('entry_delete')) {
+               $deleteIcon = view('components.svg-icon', ['icon' => 'delete'])->render();
+               $action .= '<form action="'.route('entry.destroy', $entry->id).'" method="POST" class="deleteForm m-1">
+               <button title="'.trans('quickadmin.qa_delete').'" class="btn btn-icon btn-danger record_delete_btn btn-sm">'.$deleteIcon.'</button>
+               </form>';
+               }
+               return $action;
+           })
+           ->filterColumn('created_at', function ($query, $keyword) {
+               $query->whereRaw("DATE_FORMAT(entries.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
+           })
+           ->rawColumns(['action']);
     }
 
-    /**
-     * Get the query source of dataTable.
-     */
-    public function query(Entry $model): QueryBuilder
-    {
-        return $model->newQuery();
-    }
+   /**
+    * Get the query source of dataTable.
+    */
+   public function query(Entry $model): QueryBuilder
+   {
+       return $model->newQuery()->with('supplier');
+   }
 
-    /**
-     * Optional method if you want to use the html builder.
-     */
-    public function html(): HtmlBuilder
-    {
-        return $this->builder()
-                    ->setTableId('entry-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
-    }
 
-    /**
-     * Get the dataTable columns definition.
-     */
-    public function getColumns(): array
-    {
-        return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
-        ];
-    }
+   public function html(): HtmlBuilder
+   {
+       return $this->builder()
+           ->setTableId('entries-table')
+           ->parameters([
+               'responsive' => true,
+               'pageLength' => 50,
+               'lengthMenu' => [[10, 25, 50, 70, 100, -1], [10, 25, 50, 70, 100, 'All']],
+           ])
+           ->columns($this->getColumns())
+           ->minifiedAjax()
+           ->dom('lfrtip')
+           ->orderBy(1,'asc')
+           ->selectStyleSingle();
+   }
+
+   /**
+    * Get the dataTable columns definition.
+    */
+   public function getColumns(): array
+   {
+       return [
+           Column::make('DT_RowIndex')->title(trans('quickadmin.qa_sn'))->orderable(false)->searchable(false),
+           Column::make('supplier.name')->title(trans('quickadmin.entries.fields.supplier_name')),
+           Column::make('amount')->title(trans('quickadmin.entries.fields.amount')),
+           Column::make('remark')->title(trans('quickadmin.entries.fields.remark')),
+           Column::make('created_at')->title(trans('quickadmin.entries.fields.created_at')),
+           Column::computed('action')
+           ->exportable(false)
+           ->printable(false)
+           ->width(60)
+           ->addClass('text-center')->title(trans('quickadmin.qa_action')),
+       ];
+   }
+
 
     /**
      * Get the filename for export.

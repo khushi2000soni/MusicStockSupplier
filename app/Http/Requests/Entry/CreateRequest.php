@@ -20,16 +20,16 @@ class CreateRequest extends FormRequest
         return [
             'remark' => ['required','string'],
             'amount' => ['required','numeric'],
-            'supplier_id'=>['required','numeric'],
+            'supplier_id'=>['required','numeric','exists:suppliers,id'],
         ];
     }
 
     public function messages()
     {
         return [
-            'remark.required' => 'The Name is required.',
-            'remark.string' => 'The name should be a valid string.',
-            'amount.required' => 'The Opening Balance is required.',
+            'remark.required' => 'The Remark is required.',
+            'remark.string' => 'The Remark should be a valid string.',
+            'amount.required' => 'The Amount is required.',
             'supplier_id.required'=> 'The Supplier is required.',
         ];
     }

@@ -22,8 +22,7 @@ class SupplierController extends Controller
     public function printView()
     {
         abort_if(Gate::denies('supplier_print'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $query = Supplier::query();
-        $suppliers = $query->orderBy('id','desc')->get();
+        $suppliers = Supplier::orderBy('id','desc')->get();
         return view('admin.supplier.print-supplier-list',compact('suppliers'))->render();
     }
 
@@ -41,11 +40,15 @@ class SupplierController extends Controller
 
     public function store(CreateRequest $request)
     {
-        Supplier::create($request->all());
+        $supplier= Supplier::create($request->all());
         return response()->json(['success' => true,
         'message' => trans('messages.crud.add_record'),
         'alert-type'=> trans('quickadmin.alert-type.success'),
         'title' => trans('quickadmin.suppliers.supplier'),
+        'supplier' => [
+            'id' => $supplier->id,
+            'name' => $supplier->name,
+        ]
         ], 200);
     }
 

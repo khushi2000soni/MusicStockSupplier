@@ -1,40 +1,40 @@
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">@lang('quickadmin.suppliers.fields.name')<span class="text-danger">*</span></label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="name" value="{{ isset($supplier) ? $supplier->name : old('name') }}" id="name" autocomplete="true">
+        <div class="col-md-12 mb-2">
+            <div class="custom-select2 fullselect2">
+                <div class="form-control-inner">
+                    <label for="supplier_id">@lang('quickadmin.entries.fields.select_supplier')</label>
+                    <select class="get-supplier-select" name="supplier_id" id="supplier_id">
+                        <option value="" disabled {{ !isset($entry) ? 'selected' : '' }}>@lang('quickadmin.entries.fields.select_supplier')</option>
+                        @foreach($suppliers as $supplier)
+                            <option value="{{ $supplier->id }}" {{ isset($lead) && $entry->supplier_id == $supplier->id ? 'selected' : '' }}>
+                                {{ $supplier->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
-                <label for="email">@lang('quickadmin.suppliers.fields.email')<span class="text-danger">*</span></label>
+                <label for="email">@lang('quickadmin.entries.fields.amount')<span class="text-danger">*</span></label>
                 <div class="input-group">
-                    <input type="email" class="form-control" name="email" value="{{ isset($supplier) ? $supplier->email : old('email') }}" id="email" autocomplete="true">
+                    <input type="number" class="form-control" name="amount" value="{{ isset($entry) ? $entry->amount : old('amount') }}" id="amount" autocomplete="true">
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
-                <label for="phone">@lang('quickadmin.suppliers.fields.ph_num')</label>
+                <label for="phone">@lang('quickadmin.entries.fields.remark')</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="phone" value="{{ isset($supplier) ? $supplier->phone : old('phone') }}" id="phone" autocomplete="true">
+                    <input type="text" class="form-control" name="remark" value="{{ isset($entry) ? $entry->remark : old('remark') }}" id="remark" autocomplete="true">
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="opening_balance">@lang('quickadmin.suppliers.fields.opening_balance')</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="opening_balance" value="{{ isset($supplier) ? $supplier->opening_balance : old('opening_balance') }}" id="opening_balance" min="0" step=".01" onkeydown="javascript: return ['Tab','NumpadDecimal','Period', 'Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <div class="row">

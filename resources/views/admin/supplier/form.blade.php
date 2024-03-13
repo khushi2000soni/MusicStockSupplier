@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="opening_balance">@lang('quickadmin.suppliers.fields.opening_balance')</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="opening_balance" value="{{ isset($supplier) ? $supplier->opening_balance : old('opening_balance') }}" id="opening_balance" min="0" step=".01" onkeydown="javascript: return ['Tab','NumpadDecimal','Period', 'Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+                    <input type="number" class="form-control" name="opening_balance" value="{{ isset($supplier) ? $supplier->opening_balance : old('opening_balance') }}" id="opening_balance" min="0" step=".01" onkeydown="javascript: return ['Tab','NumpadDecimal','Period', 'Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
                 </div>
             </div>
         </div>

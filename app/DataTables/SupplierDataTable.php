@@ -58,7 +58,7 @@ class SupplierDataTable extends DataTable
                $query->whereRaw("DATE_FORMAT(suppliers.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
            })
            ->rawColumns(['action']);
-   }
+    }
 
    /**
     * Get the query source of dataTable.
