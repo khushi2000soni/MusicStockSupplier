@@ -120,32 +120,19 @@ return [
 		],
 	],
 
-    'customer-management' => [
-		'title' 	=> 'Party Management',
+    'supplier-management' => [
+		'title' 	=> 'Supplier Management',
 		'fields' 	=> [
 			'add' 	=> 'Add New',
-			'list' 	=> 'Party List',
-			'alter_list' 	=> 'Alter List',
+			'list' 	=> 'Supplier List',
 		],
 	],
 
-    'phone-book' => [
-		'title' 	=> 'Phone Book',
-		'fields' 	=> [
-			'name' 			=> 'Name',
-            'guardian_name'  => 'Husband/Father Name',
-            'ph_num'         =>'Phone No.',
-            'address'       =>'City',
-			'list' 	=> 'Phone Book',
-			'alter_list' 	=> 'Alter List',
-		],
-	],
-
-	'customers'  => [
-		'title'  => 'Parties',
-        'customer' => 'Party',
-		'customer_details'  	  		=> 'Party Details',
-		'customer_order_details'  	    => 'Party Order Details',
+	'suppliers'  => [
+		'title'  => 'Suppliers',
+        'supplier' => 'Supplier',
+		'supplier_details'  	  		=> 'Supplier Details',
+		'supplier_order_details'  	    => 'Supplier Order Details',
 		'select_address'  => 'Select City',
 		'fields' => [
 			'name' 			=> 'Name',
@@ -153,17 +140,14 @@ return [
             'ph_num'         =>'Phone No.',
             'phone'         =>'Phone No. 1',
             'phone2'         =>'Phone No. 2',
-            'address'       =>'City',
-            'guardian_name'  => 'Husband/Father Name',
 			'action' 		=> 'Action',
             'created_at'    =>'Created At',
 			'created_by' 	=> 'Created By',
 			'is_type'		=> 'Type',
-			'credit_limit'  => 'Credit Limit',
 			'phone_number' 	=> 'Phone Number',
 			'opening_blance'=> 'Opening Blance',
-            'add' 	=> 'Add Party',
-            'edit' => 'Edit Party',
+            'add' 	=> 'Add Supplier',
+            'edit' => 'Edit Supplier',
             'select_address' => 'Select City',
 
 		],

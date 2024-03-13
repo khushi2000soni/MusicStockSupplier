@@ -110,7 +110,7 @@ class RoleController extends Controller
         }
 
 
-     return response()->json([
+        return response()->json([
         'success' => true,
         'message' => trans('messages.crud.update_record'),
         'alert-type'=> trans('quickadmin.alert-type.success'),

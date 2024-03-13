@@ -32,6 +32,15 @@
         </li>
         @endcan
 
+        @can('supplier_access')
+        <li class="{{ Request::is('supplier*') ? 'active' : '' }}">
+            <a href="{{ route('staff.index') }}" class="nav-link">
+                <x-side-bar-svg-icon icon="staff" />
+                <span>@lang('quickadmin.supplier-management.title')</span>
+            </a>
+        </li>
+        @endcan
+
 
         @can('setting_access')
         <li class="{{ Request::is('settings*') ? 'active' : '' }}">

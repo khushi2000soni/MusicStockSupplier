@@ -5,8 +5,11 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EntryController;
+use App\Http\Controllers\PaymentReceiptController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -42,6 +45,9 @@ Route::middleware(['auth','PreventBackHistory'])->group(function () {
     Route::get('/settings/{tab?}',[SettingController::class,'index'])->name('settings');
     Route::post('/settings/update',[SettingController::class,'update'])->name('settings.update');
 
+    Route::resource('supplier',SupplierController::class);
+    Route::resource('entry',EntryController::class);
+    Route::resource('payment-receipt',PaymentReceiptController::class);
 });
 
 
@@ -50,7 +56,6 @@ Route::get('/phpinfo', function () {
 });
 
 Route::get('/refresh', function () {
-    // Run Artisan commands
     Artisan::call('optimize:clear');
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
