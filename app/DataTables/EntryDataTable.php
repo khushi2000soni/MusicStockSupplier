@@ -30,9 +30,15 @@ class EntryDataTable extends DataTable
             })
             ->editColumn('amount',function($entry){
                 return $entry->amount ?? "";
-               })
+            })
             ->editColumn('remark',function($entry){
                 return $entry->remark ?? "";
+            })
+            ->addColumn('proof_document',function($entry){
+                $doc='';
+                $docIcon = view('components.svg-icon', ['icon' => 'add-order'])->render();
+                $doc = !empty($entry->proof_document_url) ? '<a class="p-1 mx-1" href="' . $entry->proof_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
+                return $doc;
             })
            ->editColumn('created_at', function ($entry) {
                return $entry->created_at->format('d-m-Y h:i A');
@@ -41,7 +47,7 @@ class EntryDataTable extends DataTable
                $action='';
                if (Gate::check('entry_edit')) {
                $editIcon = view('components.svg-icon', ['icon' => 'edit'])->render();
-               $action .= '<button class="btn btn-icon btn-info edit-entry-btn p-1 mx-1" data-href="'.route('entry.edit', $entry->id).'">'.$editIcon.'</button>';
+               $action .= '<button class="btn btn-icon btn-info edit-entry-btn p-1 mx-1" data-href="'.route('entry.edit', $entry->id).'" >'.$editIcon.'</button>';
                }
                if (Gate::check('entry_delete')) {
                $deleteIcon = view('components.svg-icon', ['icon' => 'delete'])->render();
@@ -54,7 +60,7 @@ class EntryDataTable extends DataTable
            ->filterColumn('created_at', function ($query, $keyword) {
                $query->whereRaw("DATE_FORMAT(entries.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
            })
-           ->rawColumns(['action']);
+           ->rawColumns(['action','proof_document']);
     }
 
    /**
@@ -62,7 +68,7 @@ class EntryDataTable extends DataTable
     */
    public function query(Entry $model): QueryBuilder
    {
-       return $model->newQuery()->with('supplier');
+        return $model->newQuery()->with('supplier');
    }
 
 
@@ -78,7 +84,7 @@ class EntryDataTable extends DataTable
            ->columns($this->getColumns())
            ->minifiedAjax()
            ->dom('lfrtip')
-           ->orderBy(1,'asc')
+           ->orderBy(4,'desc')
            ->selectStyleSingle();
    }
 
@@ -92,6 +98,7 @@ class EntryDataTable extends DataTable
            Column::make('supplier.name')->title(trans('quickadmin.entries.fields.supplier_name')),
            Column::make('amount')->title(trans('quickadmin.entries.fields.amount')),
            Column::make('remark')->title(trans('quickadmin.entries.fields.remark')),
+           Column::make('proof_document')->title(trans('quickadmin.entries.fields.proof_document'))->orderable(false)->searchable(false),
            Column::make('created_at')->title(trans('quickadmin.entries.fields.created_at')),
            Column::computed('action')
            ->exportable(false)

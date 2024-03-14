@@ -21,6 +21,7 @@ class CreateRequest extends FormRequest
             'remark' => ['required','string'],
             'amount' => ['required','numeric'],
             'supplier_id'=>['required','numeric','exists:suppliers,id'],
+            'proof_document' => ['required','file','mimes:jpg,png,pdf,csv,xls,xlss,doc,docx','max:2048']
         ];
     }
 

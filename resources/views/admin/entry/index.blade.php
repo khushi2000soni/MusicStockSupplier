@@ -220,7 +220,7 @@ $(document).ready(function () {
         $("#AddEntryForm button[type=submit]").prop('disabled',true);
         $(".error").remove();
         $(".is-invalid").removeClass('is-invalid');
-        var formData = $(this).serialize();
+        var formData = new FormData(this);
         var formAction = $(this).attr('action');
         $.ajax({
             url: formAction,
@@ -228,6 +228,8 @@ $(document).ready(function () {
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            processData: false,
+            contentType: false,
             data: formData,
             success: function (response) {
                     $('#centerModal').modal('hide');
@@ -258,14 +260,17 @@ $(document).ready(function () {
         $("#EditEntryForm button[type=submit]").prop('disabled',true);
         $(".error").remove();
         $(".is-invalid").removeClass('is-invalid');
-        var formData = $(this).serialize();
+        //var formData = $(this).serialize();
+        var formData = new FormData(this);
         var formAction = $(this).attr('action');
         $.ajax({
             url: formAction,
-            type: 'PUT',
+            type: 'POST',
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+            },
+            processData: false,
+            contentType: false,
             data: formData,
             success: function (response) {
                     $('#editModal').modal('hide');
@@ -274,14 +279,11 @@ $(document).ready(function () {
                     var title = "{{ trans('quickadmin.entries.entry') }}";
                     showToaster(title,alertType,message);
                     $('#EditEntryForm')[0].reset();
-                    //location.reload();
                     DataaTable.ajax.reload();
                     $("#EditEntryForm button[type=submit]").prop('disabled',false);
             },
             error: function (xhr) {
                 var errors= xhr.responseJSON.errors;
-                console.log(xhr.responseJSON);
-
                 for (const elementId in errors) {
                     $("#EditEntryForm #"+elementId).addClass('is-invalid');
                     var errorHtml = '<div><span class="error text-danger">'+errors[elementId]+'</span></';

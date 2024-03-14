@@ -47,4 +47,24 @@ class Entry extends Model
         return $this->belongsTo(Supplier::class,'supplier_id','id');
     }
 
+
+    public function uploads()
+    {
+        return $this->morphMany(Uploads::class, 'uploadsable');
+    }
+
+    public function proofDocument()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'entryproof');
+    }
+
+    public function getProofDocumentUrlAttribute()
+    {
+        if ($this->proofDocument) {
+            return $this->proofDocument->file_url;
+        }
+        return "";
+    }
+
+
 }

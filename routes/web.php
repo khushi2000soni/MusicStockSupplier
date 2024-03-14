@@ -47,12 +47,13 @@ Route::middleware(['auth','PreventBackHistory'])->group(function () {
 
     Route::resource('supplier',SupplierController::class);
     Route::get('/supplier-printView',[SupplierController::class,'printView'])->name('supplier.print');
-    Route::get('/supplier-export',[SupplierController::class,'export'])->name('supplier.export');
+    // Route::get('/supplier-export',[SupplierController::class,'export'])->name('supplier.export');
 
 
     Route::resource('entry',EntryController::class);
+    Route::post('/entry/{entry}',[EntryController::class,'update'])->name('entry.update');
     Route::get('/entry-printView',[EntryController::class,'printView'])->name('entry.print');
-    Route::get('/entry-export',[EntryController::class,'export'])->name('entry.export');
+    // Route::get('/entry-export',[EntryController::class,'export'])->name('entry.export');
 
     Route::resource('payment-receipt',PaymentReceiptController::class);
 });

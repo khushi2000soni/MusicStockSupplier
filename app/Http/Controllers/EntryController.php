@@ -41,7 +41,11 @@ class EntryController extends Controller
 
     public function store(CreateRequest $request)
     {
-        Entry::create($request->all());
+        $entry= Entry::create($request->all());
+        if($entry && $request->hasFile('proof_document')){
+            uploadImage($entry, $request->proof_document, 'entry/entryproof',"entryproof", 'original', 'save', null);
+        }
+
         return response()->json(['success' => true,
         'message' => trans('messages.crud.add_record'),
         'alert-type'=> trans('quickadmin.alert-type.success'),
@@ -59,6 +63,16 @@ class EntryController extends Controller
     public function update(UpdateRequest $request, Entry $entry)
     {
         $entry->update($request->all());
+        if($entry && $request->hasFile('proof_document')){
+            $actionType = 'save';
+            $uploadId = null;
+            if($profileImageRecord = $entry->proofDocument){
+                $uploadId = $profileImageRecord->id;
+                $actionType = 'update';
+            }
+            uploadImage($entry, $request->proof_document, 'entry/entryproof',"entryproof", 'original', $actionType, $uploadId);
+        }
+
         return response()->json(['success' => true,
         'message' => trans('messages.crud.update_record'),
         'alert-type'=> trans('quickadmin.alert-type.success')], 200);

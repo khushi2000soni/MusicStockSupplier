@@ -55,11 +55,10 @@ if (!function_exists('uploadImage')) {
 		$oldFile = null;
 
         if($actionType == "save"){
-
-			$upload               		= new Uploads;
+			$upload   = new Uploads;
 		}else{
 
-			$upload               		= Uploads::find($uploadId);
+			$upload  = Uploads::find($uploadId);
 			$oldFile = $upload->file_path;
 
 		}

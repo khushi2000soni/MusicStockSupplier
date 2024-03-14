@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" id="EditEntryForm" action="{{route('entry.update',$entry->id)}}">
+                <form method="post" id="EditEntryForm" action="{{route('entry.update',$entry->id)}}" enctype="multipart/form-data" >
                 @include('admin.entry.form')
                 </form>
                 {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}

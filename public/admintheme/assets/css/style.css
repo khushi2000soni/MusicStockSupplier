@@ -12787,7 +12787,6 @@ table.dataTable tbody tr td {
     border-right: 1px solid #ddd;
     font-weight: 300;
     padding: 7px 15px;
-    text-transform: capitalize;
 }
 table.dataTable tbody tr td a {
     color: #121212;

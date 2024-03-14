@@ -170,6 +170,7 @@ return [
             'created_at'    =>'Created At',
 			'created_by' 	=> 'Created By',
 			'supplier_name'		=> 'Supplier Name',
+            'proof_document'    => 'Proof Document',
             'add' 	=> 'Add Entry',
             'edit' => 'Edit Entry',
             'select_supplier' => 'Select Supplier',

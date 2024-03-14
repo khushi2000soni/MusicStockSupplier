@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payment_receipts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('supplier_id');
-            $table->decimal('amount', 15, 3);
+            $table->decimal('amount', 15, 2);
             $table->string('remark')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
