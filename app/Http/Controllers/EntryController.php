@@ -66,8 +66,8 @@ class EntryController extends Controller
         if($entry && $request->hasFile('proof_document')){
             $actionType = 'save';
             $uploadId = null;
-            if($profileImageRecord = $entry->proofDocument){
-                $uploadId = $profileImageRecord->id;
+            if($proofDocumentRecord = $entry->proofDocument){
+                $uploadId = $proofDocumentRecord->id;
                 $actionType = 'update';
             }
             uploadImage($entry, $request->proof_document, 'entry/entryproof',"entryproof", 'original', $actionType, $uploadId);

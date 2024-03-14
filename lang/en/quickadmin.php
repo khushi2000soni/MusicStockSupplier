@@ -184,6 +184,24 @@ return [
 		],
 	],
 
+    'payment_receipts'  => [
+		'title'  => 'Payment Receipts',
+        'payment_receipt' => 'Payment Receipt',
+		'payment_receipt_details'  	  => 'Payment Receipt Details',
+		'fields' => [
+			'amount' 		=> 'Amount',
+			'remark' 		=> 'Remark',
+			'action' 		=> 'Action',
+            'created_at'    =>'Created At',
+			'created_by' 	=> 'Created By',
+			'supplier_name'		=> 'Supplier Name',
+            'proof_document'    => 'Payment Document',
+            'add' 	=> 'Add Payment Receipt',
+            'edit' => 'Edit Payment Receipt',
+            'select_supplier' => 'Select Supplier',
+		],
+	],
+
 
     'qa_company_name' 	=> 'Music Stock Supplier',
     'qa_print_invoice' 	=> 'Print Invoice',

@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class PaymentReceipt extends Model
 {
     use HasFactory,Notifiable,SoftDeletes;
-    public $table = 'entries';
+    public $table = 'payment_receipts';
 
     protected $fillable = [
         'supplier_id',
@@ -39,5 +39,30 @@ class PaymentReceipt extends Model
         static::updating(function(PaymentReceipt $model) {
             $model->updated_by = auth()->user()->id;
         });
+    }
+
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class,'supplier_id','id');
+    }
+
+
+    public function uploads()
+    {
+        return $this->morphMany(Uploads::class, 'uploadsable');
+    }
+
+    public function paymentDocument()
+    {
+        return $this->morphOne(Uploads::class, 'uploadsable')->where('type', 'payment_receipt_proof');
+    }
+
+    public function getPaymentDocumentUrlAttribute()
+    {
+        if ($this->paymentDocument) {
+            return $this->paymentDocument->file_url;
+        }
+        return "";
     }
 }
