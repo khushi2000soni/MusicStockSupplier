@@ -17,7 +17,6 @@ class CreateRequest extends FormRequest
 
     public function rules()
     {
-        //dd($this->all());
         return [
             'remark' => ['required','string'],
             'amount' => ['required','numeric'],

@@ -13278,6 +13278,34 @@ button#addProductBtn {
     padding-left: 0;
     padding-right: 0;
 } */
+
+
+.diffrent-cards .one {
+    background-color: rgb(255 138 0);
+}
+.diffrent-cards .two {
+    background-color: rgb(40 215 108);
+}
+.diffrent-cards .three {
+    background-color: rgb(255 152 125);
+}
+.diffrent-cards .four {
+    background-color: rgb(255 206 0);
+}
+.diffrent-cards .five {
+    background-color: rgb(200 160 255);
+}
+.diffrent-cards .six {
+    background-color: rgb(128 216 255);
+}
+.diffrent-cards .seven {
+    background-color: rgb(255 144 186);
+}
+.diffrent-cards .eight {
+    background-color: rgb(209 255 227 / 55%);
+}
+
+
 .diffrent-cards .col-lg-6:first-child .card {
     background-color: rgb(255 138 0);
 }

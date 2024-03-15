@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Customer;
-use App\Models\Device;
-use App\Models\Order;
-use App\Models\Product;
+use App\Models\Entry;
+use App\Models\PaymentReceipt;
+use App\Models\Supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -18,8 +16,13 @@ class DashboardController extends Controller
     }
 
 
-    public function index(Request $request){
-        return view('admin.dashboard');
+    public function index()
+    {
+        $totalsuppliers = Supplier::count();
+        $totalentryamount = Entry::sum('amount');
+        $totalpaymentreceiptamount = PaymentReceipt::sum('amount');
+        //dd($totalsuppliers,$totalentryamount, $totalpaymentreceiptamount);
+        return view('admin.dashboard',compact('totalsuppliers','totalentryamount','totalpaymentreceiptamount'));
     }
 
 }

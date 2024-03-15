@@ -11,9 +11,43 @@
 
     <div class="section-body dashboard-card">
         @can('dashboard_widget_access')
-
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="row diffrent-cards">
+                    <div class="col-12 col-md-4 col-lg-3 ">
+                        <div class="card card-info five">
+                        <div class="card-header">
+                            <h4 class="">@lang('quickadmin.dashboard.totalsuppliers')</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4>{{ $totalsuppliers ?? 0 }}</h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="card card-info six" >
+                        <div class="card-header">
+                            <h4 class="">@lang('quickadmin.dashboard.totalentryamount')</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4>{{ $totalentryamount ?? 0 }}</h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="card card-info seven">
+                        <div class="card-header">
+                            <h4 class="">@lang('quickadmin.dashboard.totalpaymentreceiptamount')</h4>
+                        </div>
+                        <div class="card-body">
+                            <h4>{{ $totalpaymentreceiptamount ?? 0 }}</h4>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endcan
-
     </div>
   </section>
 @endsection

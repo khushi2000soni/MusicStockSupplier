@@ -11,28 +11,10 @@ return [
 
     'dashboard' => [
         'title' => 'Dashboard',
-        'add_product' 		=> 'Add Item',
-        'add_customer' 		=> 'Add Party',
-        'add_invoice' 		=> 'Add Invoice',
-		'reset' 			=> 'Reset',
-		'view_detail'		=> 'View Details',
-		'total_customer' 	=> 'Total Parties!',
-		'total_product' 	=> 'Total Items!',
-        'todaySaleAmount'   =>  "Today's Sale",
-        'last7DaysSaleAmount'   =>  "Last 7 Days",
-        'last30DaysSaleAmount'   =>  "Last 30 Days",
-        'allSaleAmount'   =>  "All Time Sale",
-        'todayTotalOrder'   =>  "Today's Order",
-        'totalProductInStock'   =>  "Total Item",
-        'totalCategory'   =>  "Total Category",
-        'totalCustomer'   =>  "Total Party",
-        'order' => 'Order',
-        'today' => 'Today',
-        '7days' => '7 Days',
-        '30days' => '30 Days',
-        'customer' => 'Party',
-        'amount' => 'Amount',
-        'products' => 'Items',
+        'totalsuppliers'   =>  "Today Suppliers",
+        'totalentryamount'   =>  "Total Entry Amount",
+        'totalpaymentreceiptamount'   =>  "Total Payment Receipt Amount",
+        'amount' => 'Amount'
 	],
 
 	'user-management' => [
