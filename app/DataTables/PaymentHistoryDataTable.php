@@ -33,7 +33,7 @@ class PaymentHistoryDataTable extends DataTable
             return $checkbox;
         })
         ->addIndexColumn()
-        ->editColumn('created_at', function ($data) {
+        ->addColumn('created_at', function ($data) {
             return $data->created_at->format('d-m-Y H:i:A');
         })
         ->addColumn('particulars',function($data){
@@ -59,7 +59,6 @@ class PaymentHistoryDataTable extends DataTable
             return $data->table_type == "payment_receipts" ? $data->amount : "";
         })
         ->rawColumns(['checkbox']);
-
     }
 
     public function query(Supplier $supplier): QueryBuilder
@@ -100,7 +99,7 @@ class PaymentHistoryDataTable extends DataTable
    public function getColumns(): array
    {
        return [
-            Column::make('checkbox')->titleAttr('')->title('<label class="custom-checkbox"><input type="checkbox" id="dt_cb_all" ><span></span></label>')->orderable(false)->searchable(false)->addClass('pe-0 position-relative'),
+            Column::make('checkbox')->title('<label class="custom-checkbox"><input type="checkbox" id="dt_cb_all" ><span></span></label>')->orderable(false)->searchable(false),
             Column::make('DT_RowIndex')->title(trans('quickadmin.qa_sn'))->orderable(false)->searchable(false)->visible(false),
             Column::make('created_at')->title(trans('quickadmin.suppliers.fields.created_at'))->orderable(false)->searchable(false),
             Column::make('particulars')->title(trans('quickadmin.suppliers.particulars'))->orderable(false)->searchable(false),
