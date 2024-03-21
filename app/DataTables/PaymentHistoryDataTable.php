@@ -21,6 +21,7 @@ class PaymentHistoryDataTable extends DataTable
 
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        $query = $query->orderBy('created_at', 'desc');
         return (new EloquentDataTable($query))
         ->addColumn('checkbox', function ($data) {
             $checkbox = "";
@@ -84,17 +85,13 @@ class PaymentHistoryDataTable extends DataTable
                 [
                     'targets' => 0,
                     'checkboxes' => true,
-                    'columnVisibility' => [
-                        'targets' => 0,
-                        'visible' => true,
-                    ]
                 ]
             ]
             ])
            ->columns($this->getColumns())
            ->minifiedAjax()
-           ->dom('')
-           ->orderBy(2,'desc');
+           ->dom('');
+           //->orderBy(2,'desc');
    }
 
    /**
