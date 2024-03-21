@@ -20,7 +20,6 @@
                 <tr>
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="left">@lang('quickadmin.qa_sn')</th>
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.fields.name')</th>
-                    <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.fields.ph_num')</th>
                     <th style="padding: 10px;border: 1px solid #000;" align="center">@lang('quickadmin.suppliers.fields.opening_balance')
                 </tr>
             </thead>
@@ -30,7 +29,6 @@
                 <tr>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="left">{{ $key + 1 }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $supplier->name ?? '' }}</td>
-                    <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $supplier->phone ?? '' }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->opening_balance ?? '' }}</td>
                 </tr>
                 @empty

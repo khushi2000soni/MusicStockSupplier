@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('name',191);
-            $table->string('email',100)->nullable();
-            $table->string('phone',13)->nullable();
             $table->decimal('opening_balance', 15, 2);
             $table->tinyInteger('is_active')->default(1)->comment('1=> active, 0=>deactive');
             $table->integer('created_by')->nullable();

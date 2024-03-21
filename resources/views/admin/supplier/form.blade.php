@@ -1,6 +1,6 @@
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 <label for="name">@lang('quickadmin.suppliers.fields.name')<span class="text-danger">*</span></label>
                 <div class="input-group">
@@ -8,26 +8,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="email">@lang('quickadmin.suppliers.fields.email')<span class="text-danger">*</span></label>
-                <div class="input-group">
-                    <input type="email" class="form-control" name="email" value="{{ isset($supplier) ? $supplier->email : old('email') }}" id="email" autocomplete="true">
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="phone">@lang('quickadmin.suppliers.fields.ph_num')</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="phone" value="{{ isset($supplier) ? $supplier->phone : old('phone') }}" id="phone" autocomplete="true" maxlength="10" oninput="if(this.value.length > 10) { this.value = this.value.slice(0, 10); }">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 <label for="opening_balance">@lang('quickadmin.suppliers.fields.opening_balance')</label>
                 <div class="input-group">

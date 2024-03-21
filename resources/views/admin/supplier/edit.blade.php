@@ -1,5 +1,5 @@
 <div class="modal fade px-3" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModalCenterTitle">@lang('quickadmin.suppliers.fields.edit')</h5>

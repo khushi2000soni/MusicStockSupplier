@@ -14,8 +14,6 @@ class Supplier extends Model
 
     protected $fillable = [
         'name',
-        'email',
-        'phone',
         'opening_balance',
         'created_by',
         'updated_by',
@@ -46,6 +44,21 @@ class Supplier extends Model
     public function entries()
     {
         return $this->hasMany(Entry::class);
+    }
+
+    public function payment_receipts()
+    {
+        return $this->hasMany(PaymentReceipt::class);
+    }
+
+    public function getTotalDebitAmount()
+    {
+        return $this->entries()->sum('amount');
+    }
+
+    public function getTotalCreditAmount()
+    {
+        return $this->payment_receipts()->sum('amount');
     }
 
 }

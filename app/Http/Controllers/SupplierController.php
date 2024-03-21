@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PaymentHistoryDataTable;
 use App\DataTables\SupplierDataTable;
 use App\Http\Requests\Supplier\CreateRequest;
 use App\Http\Requests\Supplier\UpdateRequest;
+use App\Models\Entry;
+use App\Models\PaymentReceipt;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -52,6 +56,16 @@ class SupplierController extends Controller
         ], 200);
     }
 
+    public function show(PaymentHistoryDataTable $dataTable, Supplier $supplier)
+    {
+        abort_if(Gate::denies('supplier_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $totalDebitAmount = $supplier->getTotalDebitAmount();
+        $totalCreditAmount = $supplier->getTotalCreditAmount();
+        //dd($totalDebitAmount , $totalCreditAmount);
+        $closingBalance = $supplier->opening_balance + $totalDebitAmount - $totalCreditAmount;
+        return $dataTable->with('supplier', $supplier->id)->render('admin.supplier.show', compact('supplier','totalDebitAmount','totalCreditAmount','closingBalance'));
+    }
+
     public function edit(Supplier $supplier)
     {
         $htmlView = view('admin.supplier.edit', compact('supplier'))->render();
@@ -78,4 +92,38 @@ class SupplierController extends Controller
         ], 200);
     }
 
+    public function massDestroyPaymentHistory(Request $request)
+    {
+        abort_if(Gate::denies('supplier_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        if($request->ajax()){
+            $entryIds = $request->input('entryids');
+            $paymentReceiptIds = $request->input('payment_receipt_ids');
+            try{
+                DB::beginTransaction();
+                // Delete entries
+                if (!empty($entryIds)) {
+                    Entry::whereIn('id', $entryIds)->update(['deleted_by' => auth()->user()->id]);
+                    Entry::whereIn('id', $entryIds)->delete();                }
+                // Delete payment receipts
+                if (!empty($paymentReceiptIds)) {
+                    PaymentReceipt::whereIn('id', $paymentReceiptIds)->update(['deleted_by' => auth()->user()->id]);
+                    PaymentReceipt::whereIn('id', $paymentReceiptIds)->delete();
+                }
+
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'message' => trans('messages.crud.delete_record'),
+                    'alert-type' => trans('quickadmin.alert-type.success'),
+                    'title' => trans('quickadmin.suppliers.supplier'),
+                ], 200);
+            }catch(\Exception $e){
+                DB::rollBack();
+                return response()->json(['success' => false,
+                'message' => trans('messages.error1'),
+                'alert-type'=> trans('quickadmin.alert-type.error')], 500);
+            }
+        }
+
+    }
 }

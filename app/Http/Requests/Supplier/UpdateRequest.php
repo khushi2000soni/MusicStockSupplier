@@ -20,8 +20,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['required','string','max:150',new TitleValidationRule],
-            'email' => ['required','email','unique:suppliers,email,'.$this->supplier->id],
-            'phone' => ['required','digits:10','numeric','unique:suppliers,phone,'.$this->supplier->id],
             'opening_balance' => ['required','numeric'],
         ];
     }
@@ -32,16 +30,6 @@ class UpdateRequest extends FormRequest
             'name.required' => 'The Name is required.',
             'name.string' => 'The name should be a valid string.',
             'name.max' => 'The name should not exceed 150 characters.',
-            'guardian_name.required' => 'The Husband/Father Name is required.',
-            'guardian_name.string' => 'The Husband/Father Name should be a valid string.',
-            'guardian_name.max' => 'The Husband/Father Name should not exceed 150 characters.',
-            'email.required' => 'The email field is required.',
-            'email.email' => 'Please provide a valid email address.',
-            'email.unique' => 'This email is already in use.',
-            'phone.required' => 'The Phone number is required.',
-            'phone.digits' => 'The Phone number must be 10 digits.',
-            'phone.numeric' => 'The Phone number must be a number.',
-            'phone.unique' => 'The Phone number has already been taken.',
             'opening_balance.required' => 'The Opening Balance is required.',
         ];
     }

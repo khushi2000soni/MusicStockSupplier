@@ -23,14 +23,14 @@
         </li>
         @endcan --}}
 
-        @can('staff_access')
+        {{-- @can('staff_access')
         <li class="{{ Request::is('staff*') ? 'active' : '' }}">
             <a href="{{ route('staff.index') }}" class="nav-link">
                 <x-side-bar-svg-icon icon="staff" />
                 <span>@lang('quickadmin.user-management.title')</span>
             </a>
         </li>
-        @endcan
+        @endcan --}}
 
         @can('supplier_access')
         <li class="{{ Request::is('supplier*') ? 'active' : '' }}">

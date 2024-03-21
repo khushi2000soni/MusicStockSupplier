@@ -44,8 +44,9 @@ Route::middleware(['auth','PreventBackHistory'])->group(function () {
     Route::get('staff-export/',[UserController::class,'export'])->name('staff.export');
     Route::get('/settings/{tab?}',[SettingController::class,'index'])->name('settings');
     Route::post('/settings/update',[SettingController::class,'update'])->name('settings.update');
-
+    Route::delete('/supplier/payment-history/mass-destroy', [SupplierController::class, 'massDestroyPaymentHistory'])->name('payment-history.massDestroy');
     Route::resource('supplier',SupplierController::class);
+
     Route::get('/supplier-printView',[SupplierController::class,'printView'])->name('supplier.print');
     // Route::get('/supplier-export',[SupplierController::class,'export'])->name('supplier.export');
 

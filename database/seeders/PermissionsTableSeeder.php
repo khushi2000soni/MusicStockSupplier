@@ -184,6 +184,14 @@ class PermissionsTableSeeder extends Seeder
                 'updated_at' => $updateDate,
             ],
             [
+                'name'      => 'supplier_show',
+                'title'      => 'View',
+                'guard_name'=>'web',
+                'route_name'=>'suppliers',
+                'created_at' => $createDate,
+                'updated_at' => $updateDate,
+            ],
+            [
                 'name'      => 'supplier_edit',
                 'title'      => 'Edit',
                 'guard_name'=>'web',
