@@ -1,0 +1,15 @@
+[14-Mar-2024 12:25:54 UTC] PHP Warning:  require(/home/hiplstaging3/supplier.hipl-staging3.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/hiplstaging3/supplier.hipl-staging3.com/artisan on line 18
+[14-Mar-2024 12:25:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hiplstaging3/supplier.hipl-staging3.com/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/hiplstaging3/supplier.hipl-staging3.com/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/hiplstaging3/supplier.hipl-staging3.com/artisan on line 18
+[14-Mar-2024 12:26:50 UTC] PHP Warning:  require(/home/hiplstaging3/supplier.hipl-staging3.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/hiplstaging3/supplier.hipl-staging3.com/artisan on line 18
+[14-Mar-2024 12:26:50 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hiplstaging3/supplier.hipl-staging3.com/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/hiplstaging3/supplier.hipl-staging3.com/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/hiplstaging3/supplier.hipl-staging3.com/artisan on line 18
+[14-Mar-2024 12:27:21 UTC] PHP Warning:  require(/home/hiplstaging3/supplier.hipl-staging3.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/hiplstaging3/supplier.hipl-staging3.com/artisan on line 18
+[14-Mar-2024 12:27:21 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hiplstaging3/supplier.hipl-staging3.com/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/hiplstaging3/supplier.hipl-staging3.com/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home/hiplstaging3/supplier.hipl-staging3.com/artisan on line 18

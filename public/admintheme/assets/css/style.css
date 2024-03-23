@@ -8,7 +8,8 @@
     url("https://db.onlinewebfonts.com/t/be9b9dc6273bfa79a55f2f381d16b42a.svg#Roadgeek 2005 Series C")format("svg");
 } */
 
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @font-face {
     font-family: 'Mangal';
     src: url('{{ asset("hindifont/Mangal-Bold.woff2") }}') format('woff2'),
@@ -4257,7 +4258,7 @@ div#reportrange {
     opacity: 1;
     width: 35px;
     height: 35px;
-    background: #d30000;
+    background: #db5102;
     border-radius: 100%;
 }
 .modal-header .close span {
@@ -7268,8 +7269,8 @@ body.layout-3 .main-footer {
     padding-left: 10px
 }
 .main-content {
-    padding-left: 285px;
-    padding-right: 15px;
+    padding-left: 295px;
+    padding-right: 25px;
     padding-top: 90px;
     width: 100%;
     position: relative;
@@ -7340,7 +7341,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu>li.active>a:before {
     transform: translateY(-50%);
     height: 100%;
     width: 5px;
-    background:#d30000 ;
+    background:#db5102 ;
 }
 body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-menu li a {
     background-color: #fff
@@ -8534,7 +8535,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 .theme-white .btn-primary {
-    background-color: #d30000;
+    background-color: #db5102;
     border-color: transparent !important;
     color: #fff
 }
@@ -8547,11 +8548,11 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 .theme-white .btn-primary:focus:active {
-    background-color: #d30000  !important
+    background-color: #db5102  !important
 }
 
 .theme-white .btn-primary:active {
-    background-color: #d30000  !important
+    background-color: #db5102  !important
 }
 
 .theme-white .btn-primary:hover {
@@ -8560,74 +8561,74 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 .theme-white .btn-primary.disabled {
-    background-color: #d30000 ;
-    border-color: #d30000
+    background-color: #db5102 ;
+    border-color: #db5102
 }
 
 .theme-white .btn-primary:disabled {
-    background-color: #d30000 ;
-    border-color: #d30000
+    background-color: #db5102 ;
+    border-color: #db5102
 }
 
 .theme-white .btn-outline-primary {
-    color: #d30000 ;
+    color: #db5102 ;
     background-color: transparent;
     background-image: none;
-    border-color: #d30000 ;
+    border-color: #db5102 ;
 }
 
 .theme-white .btn-outline-primary:focus {
     color: #fff;
-    background-color: #d30000  !important;
-    border-color: #d30000
+    background-color: #db5102  !important;
+    border-color: #db5102
 }
 
 .theme-white .btn-outline-primary:focus:active {
     color: #fff;
-    background-color: #d30000  !important;
-    border-color: #d30000
+    background-color: #db5102  !important;
+    border-color: #db5102
 }
 
 .theme-white .btn-outline-primary:active {
     color: #fff;
-    background-color: #d30000  !important;
-    border-color: #d30000
+    background-color: #db5102  !important;
+    border-color: #db5102
 }
 
 .theme-white .btn-outline-primary:hover {
     color: #fff;
-    background-color: #d30000  !important;
-    border-color: #d30000 ;
+    background-color: #db5102  !important;
+    border-color: #db5102 ;
 }
 
 .theme-white .btn-outline-primary.disabled {
-    color: #d30000 ;
+    color: #db5102 ;
     background-color: transparent
 }
 
 .theme-white .btn-outline-primary:disabled {
-    color: #d30000 ;
+    color: #db5102 ;
     background-color: transparent
 }
 
 .theme-white .btn-link {
     font-weight: 400;
-    color: #d30000 ;
+    color: #db5102 ;
     background-color: transparent
 }
 
 .theme-white .btn-link:hover {
-    color: #d30000
+    color: #db5102
 }
 
 .theme-white .dropdown-item.active {
     color: #fff;
-    background-color: #d30000
+    background-color: #db5102
 }
 
 .theme-white .dropdown-item:active {
     color: #fff;
-    background-color: #d30000
+    background-color: #db5102
 }
 
 .theme-white .nav-pills .nav-link.active {
@@ -8641,32 +8642,32 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     background-color: #d30000
 }
 .theme-white .page-link {
-    color: #d30000;
+    color: #db5102;
     background-color: #fff;
     border: 1px solid #ededed;
 }
 
 .theme-white .page-link:focus {
-    color: #d30000
+    color: #db5102
 }
 
 .theme-white .page-link:hover {
-    color: #d30000 ;
-    background-color: #eaeaea
+    color: #db5102 ;
+    background-color: #db5102
 }
 
 .theme-white .page-item .page-link {
-    color: #d30000
+    color: #db5102
 }
 
 .theme-white .page-item.active .page-link {
     color: #fff;
-    background-color: #d30000 ;
-    border-color: #d30000
+    background-color: #db5102 ;
+    border-color: #db5102
 }
 
 .theme-white .page-item.disabled .page-link {
-    color: #d30000
+    color: #db5102
 }
 
 .theme-white .progress-bar {
@@ -8720,11 +8721,11 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 .theme-white .form-control:focus {
-    border-color: #d30000
+    border-color: #db5102
 }
 
 .theme-white .card.card-primary {
-    border-top: 2px solid #d30000
+    border-top: 2px solid #db5102
 }
 
 .theme-white .fc button.fc-state-active {
@@ -12655,7 +12656,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
 /* New theme mode  */
 body {
     background-color: #fffbfb;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
 }
 .purple-sidebar .main-sidebar .sidebar-brand {
 /*    background-color: #000;*/
@@ -12985,7 +12986,7 @@ div.dataTables_wrapper div.dataTables_info {
     font-weight: 600 !important;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #d30000  !important;
+    background-color: #db5102  !important;
     color: white;
 }
 /*.select2-link2 .btns {
@@ -13003,7 +13004,7 @@ div.dataTables_wrapper div.dataTables_info {
     padding-top: 32px !important;
 }
 .select2-link2 .btns {
-        color: #d30000 !important;
+        color: #db5102 !important;
     background-color: transparent;
     border: 0 !important;
     font-size: 12px;
@@ -13019,7 +13020,7 @@ div.dataTables_wrapper div.dataTables_info {
     background-color: #6e7476 !important;
 }
 .select2-container--default .select2-search--dropdown .select2-search__field {
-    border: 1px solid #d30000  !important;
+    border: 1px solid #db5102  !important;
 }
 .select2-search--dropdown .select2-search__field {
     padding: 10px;
@@ -13031,7 +13032,7 @@ div.dataTables_wrapper div.dataTables_info {
 }
 .select2-container.select2-container--open .select2-selection--single {
     background-color: #fefeff;
-    border-color: #d30000  !important;
+    border-color: #db5102  !important;
 }
 button#addProductBtn {
     background: #042c48;
@@ -13044,14 +13045,14 @@ button#addProductBtn {
 }
 
 #EditprofileForm .input-group-text i {
-    color: #d30000  !important;
+    color: #db5102  !important;
 }
 
  #editButton {
-    color: #d30000  !important;
+    color: #db5102  !important;
 }
 .btn-submit-block {
-    background: #d30000 ;
+    background: #db5102 ;
     color: #fff;
     font-size: 14px;
     padding: 10px 25px;
@@ -13100,7 +13101,7 @@ button#addProductBtn {
 
   /* For Firefox */
   * {
-    scrollbar-color: #d30000  lightgrey;
+    scrollbar-color: #db5102  lightgrey;
     scrollbar-width: thin;
   }
 
@@ -13358,7 +13359,7 @@ width: 12%;
 .dt-responsive tbody tr td:last-child .btn:hover svg path{
     fill: #fff;
 }
-table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
+/*table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
     background-color: #d30000 !important;
 }
 table.dataTable tbody>tr.selected td, table.dataTable tbody>tr>.selected td {
@@ -13366,7 +13367,7 @@ table.dataTable tbody>tr.selected td, table.dataTable tbody>tr>.selected td {
 }
 table.dataTable tbody>tr.selected td svg path, table.dataTable tbody>tr>.selected td svg path{
     fill: #fff;
-}
+}*/
 .shareblock .btn {
     width: 50px !important;
     height: 50px !important;

@@ -1,0 +1,164 @@
+body, .navbar-bg {
+    background-color: #f1f5f9 !important;
+}
+h1, h2, h3, h4, h5, h6{
+    color: #1a202e;
+    font-family: 'Montserrat', sans-serif;
+}
+.background-image-body{
+	display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.background-image-body #app{
+	width: 100%;
+}
+
+
+.main-sidebar .sidebar-brand a{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+.main-navbar{
+    background-color: #062142 !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    height: 58px;
+}
+.main-navbar .navbar-nav .nav-link i{
+    color: #fff;
+}
+.navbar .nav-link.nav-link-user img{
+    background: #ebebeb;
+}
+.main-sidebar,
+.main-sidebar .sidebar-menu,
+.main-sidebar .sidebar-menu li.active a,
+.main-sidebar .sidebar-brand,
+.sidebar-mini .main-sidebar:after,
+body.purple-sidebar.sidebar-mini .main-sidebar .sidebar-menu{
+	background-color: #062142 !important;
+}
+
+.main-sidebar .sidebar-menu li a{
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 500;
+    color: #fff !important;
+}
+.main-sidebar .sidebar-menu li a svg{
+    width: 16px !important;
+}
+.purple-sidebar .main-sidebar .sidebar-menu li a svg path{
+	fill: #fff;
+}
+
+.dashboard-card{
+	border: 1px solid #ddd;
+    box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07) !important;
+    border-radius: 4px;
+    padding: 15px;
+    background-color: #fff;
+}
+.dashboard-card .diffrent-cards .card{
+	margin-bottom: 0;
+	background-color: #eff3f8 !important;
+	padding: 18px;
+	min-height: 100%;
+}
+.dashboard-card .diffrent-cards .card .card-body{
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}
+.dashboard-card .diffrent-cards .card .card-header{
+	padding-top: 0;
+	border-bottom: 1px solid #d4dce6;
+}
+.dashboard-card .diffrent-cards .card .card-header h4{
+	font-size: 16px;
+	font-weight: 700;
+}
+.section-body .card:not(.diffrent-cards .card){
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.08), 0 1px 20px 0 rgba(0, 0, 0, 0.07), 0px 1px 11px 0px rgba(0, 0, 0, 0.07) !important;
+    border-radius: 4px;
+}
+.card .card-header h4 {
+    font-size: 18px;
+    line-height: 28px;
+    padding-right: 10px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #062142;
+}
+
+.card .card-header h4, 
+.modal-header h5, 
+.table:not(.table-sm) thead th, 
+.section-body .card .card-header h3, 
+#group_form .form-group label, 
+.table tfoot th,
+.form-group .control-label, 
+.form-group>label{
+    text-transform: capitalize;
+}
+.section-body .card .card-header {
+    border-bottom: none;
+    padding-top: 15px;
+}
+.cart_filter_box{
+	border-bottom: none !important;
+}
+.cart_filter_box h4 {
+    font-size: 18px !important;
+    line-height: 28px;
+    padding-right: 10px;
+    margin-bottom: 0 !important;
+    font-weight: 600 !important;
+    color: #062142 !important;
+    text-transform: capitalize !important;
+}
+table.dataTable thead>tr>th {
+    text-transform: capitalize !important;
+    background-color: #eff3f8 !important;
+}
+table.dataTable tbody>tr:nth-child(even) {
+    background-color: #eff3f8;
+}
+table.dataTable tbody>tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+table.dataTable tbody tr td {
+    color: #062142;
+    border-right: 1px solid #ddd;
+    font-weight: 400;
+    padding: 7px 15px;
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+.modal-header h5{
+	font-size: 18px !important;
+    line-height: 28px;
+    padding-right: 10px;
+    margin-bottom: 0 !important;
+    font-weight: 600 !important;
+    color: #062142 !important;
+    text-transform: capitalize !important;
+}
+
+@media screen and (max-width: 767px){
+	.dashboard-card .diffrent-cards .card{
+		margin-bottom: 10px;
+		min-height: auto;
+	}
+	.dashboard-card .diffrent-cards .card .card-body h4{
+		font-size: 18px;
+	}
+}
+
