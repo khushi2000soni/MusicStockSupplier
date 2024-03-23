@@ -44,7 +44,7 @@
         @can('entry_access')
         <li class="{{ Request::is('entry*') ? 'active' : '' }}">
             <a href="{{ route('entry.index') }}" class="nav-link">
-                <x-side-bar-svg-icon icon="staff" />
+                <x-side-bar-svg-icon icon="payment" />
                 <span>@lang('quickadmin.entry-management.title')</span>
             </a>
         </li>
@@ -53,12 +53,11 @@
         @can('payment_receipt_access')
         <li class="{{ Request::is('payment-receipt*') ? 'active' : '' }}">
             <a href="{{ route('payment-receipt.index') }}" class="nav-link">
-                <x-side-bar-svg-icon icon="staff" />
+                <x-side-bar-svg-icon icon="payment" />
                 <span>@lang('quickadmin.payment-receipt-management.title')</span>
             </a>
         </li>
         @endcan
-
 
         {{-- @can('setting_access')
         <li class="{{ Request::is('settings*') ? 'active' : '' }}">

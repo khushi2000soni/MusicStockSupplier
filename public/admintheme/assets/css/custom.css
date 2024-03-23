@@ -96,13 +96,13 @@ body.purple-sidebar.sidebar-mini .main-sidebar .sidebar-menu{
     color: #062142;
 }
 
-.card .card-header h4, 
-.modal-header h5, 
-.table:not(.table-sm) thead th, 
-.section-body .card .card-header h3, 
-#group_form .form-group label, 
+.card .card-header h4,
+.modal-header h5,
+.table:not(.table-sm) thead th,
+.section-body .card .card-header h3,
+#group_form .form-group label,
 .table tfoot th,
-.form-group .control-label, 
+.form-group .control-label,
 .form-group>label{
     text-transform: capitalize;
 }
@@ -150,6 +150,11 @@ table.dataTable tbody tr td {
     font-weight: 600 !important;
     color: #062142 !important;
     text-transform: capitalize !important;
+}
+.supplier-btn-area{
+    display: flex;
+    display: -webkit-flex;
+    gap: 10px;
 }
 
 @media screen and (max-width: 767px){

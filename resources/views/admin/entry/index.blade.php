@@ -100,13 +100,13 @@
                         </div>
 
                         <div class="col-md-auto col-12 mt-md-0 mt-3">
-                            <div class="row align-items-center">
-                                <div class="col-auto px-md-1 pr-1">
+                            <div class="supplier-btn-area">
+                                <div class="">
                                     @can('entry_create')
                                     <button type="button" class="addnew-btn addRecordBtn sm_btn circlebtn"  data-href="{{ route('entry.create')}}" title="@lang('quickadmin.qa_add_new')"><x-svg-icon icon="add" /></button>
                                     @endcan
                                 </div>
-                                <div class="col-auto px-1">
+                                <div class="">
                                     @can('entry_print')
                                     <a href="{{ route('entry.print') }}" class="btn printbtn h-10 col circlebtn"  id="print-button" title="@lang('quickadmin.qa_print')"> <x-svg-icon icon="print" /></a>
                                     @endcan
