@@ -44,7 +44,7 @@
         @can('entry_access')
         <li class="{{ Request::is('entry*') ? 'active' : '' }}">
             <a href="{{ route('entry.index') }}" class="nav-link">
-                <x-side-bar-svg-icon icon="payment" />
+                <x-side-bar-svg-icon icon="entry" />
                 <span>@lang('quickadmin.entry-management.title')</span>
             </a>
         </li>
