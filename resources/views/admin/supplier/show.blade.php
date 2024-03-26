@@ -83,6 +83,37 @@
     #editModal .select2-results{
         padding-top: 0px !important;
     }
+    .supplier-table1 thead th:first-child{
+        width: 20px !important;
+        min-width: 20px !important;
+        max-width: 20px !important;
+    }
+    .supplier-table1 thead th:last-child{
+        min-width: 10rem !important;
+        width: 10rem !important;
+        max-width: 10rem !important;
+    }
+    .supplier-table1 thead th:nth-last-of-type(2),
+    .supplier-table1 thead th:nth-last-of-type(3){
+        min-width: 12rem !important;
+        width: 12rem !important;
+        max-width: 12rem !important;
+    }
+    .openingbalancetable tbody td{
+        padding-left: .75rem !important;
+        padding-right: .75rem !important;
+    }
+    .openingbalancetable tbody td:last-child{
+        min-width: calc(10rem + 1.55rem) !important;
+        width: calc(10rem + 1.55rem) !important;
+        max-width: calc(10rem + 1.55rem) !important;
+    }
+    .openingbalancetable tbody td:nth-last-of-type(2),
+    .openingbalancetable tbody td:nth-last-of-type(3){
+        min-width: calc(12rem + 1.5rem) !important;
+        width: calc(12rem + 1.5rem) !important;
+        max-width: calc(12rem + 1.5rem) !important;
+    }
 </style>
 @endsection
 @section('main-content')
@@ -108,28 +139,30 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive fixed_Search">
+                    <div class="table-responsive fixed_Search supplier-table1">
                         {{$dataTable->table(['class' => 'table dt-responsive supplierTable', 'style' => 'width:100%;','id'=>'dataaTable'])}}
+                        <table class="table openingbalancetable">
+                            <tbody>
+                            <!-- Current Balance Row -->
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.current_balance')</td>
+                                <td>{{$totalDebitAmount ?? 0}}</td>
+                                <td class="text-center">{{$totalCreditAmount ?? 0}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.closing_balance')</td>
+                                <td>{{$closingBalance ?? 0}}</td>
+                                <td class="text-center"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <table class="table openingbalancetable">
-                        <tbody>
-
-                        <!-- Current Balance Row -->
-                        <tr>
-                            <td></td>
-                            <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.current_balance')</td>
-                            <td>{{$totalDebitAmount ?? 0}}</td>
-                            <td class="text-center">{{$totalCreditAmount ?? 0}}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.closing_balance')</td>
-                            <td>{{$closingBalance ?? 0}}</td>
-                            <td class="text-center"></td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
               </div>
             </div>
