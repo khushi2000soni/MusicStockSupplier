@@ -169,14 +169,6 @@ $(document).ready(function () {
         }, 'fast');
     });
 
-    $(document).on('click' , 'excel-button' , function(e){
-        e.preventDefault();
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = '/payment-receipt-export'; // Replace with the actual URL for your export route
-        document.body.appendChild(iframe);
-    });
-
     $(document).on('click', '.addRecordBtn', function (e) {
         e.preventDefault();
         var hrefUrl = $(this).attr('data-href');

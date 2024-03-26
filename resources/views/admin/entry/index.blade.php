@@ -99,7 +99,6 @@
                     <div class="row align-items-center mb-4 cart_filter_box pb-3">
                         <div class="col">
                             <h4>@lang('quickadmin.entry-management.fields.list')</h4>
-                            {{-- <input type="text" class="form-control datetimepicker"> --}}
                         </div>
 
                         <div class="col-md-auto col-12 mt-md-0 mt-3">
