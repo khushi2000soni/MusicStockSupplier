@@ -95,7 +95,7 @@
                 <div class="card-body">
                     <div class="row align-items-center mb-4 cart_filter_box pb-3">
                         <div class="col">
-                            <h4>@lang('quickadmin.suppliers.payment_history') of {{ $supplier->name ?? ""}}</h4>
+                            <h4>{{ $supplier->name ?? ""}}</h4>
                         </div>
                         <div class="col-md-auto col-12 mt-md-0 mt-3">
                             <div class="row align-items-center">
@@ -114,12 +114,7 @@
 
                     <table class="table openingbalancetable">
                         <tbody>
-                        <tr>
-                            <td></td>
-                            <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.opening_balance')</td>
-                            <td>{{ $supplier->opening_balance ?? 0 }}</td>
-                            <td class="text-center"></td>
-                        </tr>
+
                         <!-- Current Balance Row -->
                         <tr>
                             <td></td>

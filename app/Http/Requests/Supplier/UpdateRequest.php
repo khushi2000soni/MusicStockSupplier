@@ -20,7 +20,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['required','string','max:150',new TitleValidationRule],
-            'opening_balance' => ['required','numeric'],
         ];
     }
 
@@ -30,7 +29,6 @@ class UpdateRequest extends FormRequest
             'name.required' => 'The Name is required.',
             'name.string' => 'The name should be a valid string.',
             'name.max' => 'The name should not exceed 150 characters.',
-            'opening_balance.required' => 'The Opening Balance is required.',
         ];
     }
 }

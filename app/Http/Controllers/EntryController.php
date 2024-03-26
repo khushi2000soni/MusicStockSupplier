@@ -41,6 +41,7 @@ class EntryController extends Controller
 
     public function store(CreateRequest $request)
     {
+        //dd($request->all());
         $entry= Entry::create($request->all());
         if($entry && $request->hasFile('proof_document')){
             uploadImage($entry, $request->proof_document, 'entry/entryproof',"entryproof", 'original', 'save', null);

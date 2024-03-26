@@ -20,7 +20,7 @@
                 <tr>
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="left">@lang('quickadmin.qa_sn')</th>
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.fields.name')</th>
-                    <th style="padding: 10px;border: 1px solid #000;" align="center">@lang('quickadmin.suppliers.fields.opening_balance')
+                    <th style="padding: 10px;border: 1px solid #000;" align="center">@lang('quickadmin.suppliers.fields.created_at')
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                 <tr>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="left">{{ $key + 1 }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $supplier->name ?? '' }}</td>
-                    <td style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->opening_balance ?? '' }}</td>
+                    <td style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->created_at ? $supplier->created_at->format('d-m-Y h:i:A') : '' }}</td>
                 </tr>
                 @empty
                 <tr>

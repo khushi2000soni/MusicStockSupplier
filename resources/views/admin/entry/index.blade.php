@@ -5,6 +5,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" >
 <link rel="stylesheet" href="{{ asset('admintheme/assets/css/printView-datatable.css')}}">
 
+<link rel="stylesheet" href="{{ asset('admintheme/assets/bundles/bootstrap-daterangepicker/daterangepicker.css')}}">
+
 <style>
     /* @media print {
         table, table tr, table td {
@@ -97,6 +99,7 @@
                     <div class="row align-items-center mb-4 cart_filter_box pb-3">
                         <div class="col">
                             <h4>@lang('quickadmin.entry-management.fields.list')</h4>
+                            {{-- <input type="text" class="form-control datetimepicker"> --}}
                         </div>
 
                         <div class="col-md-auto col-12 mt-md-0 mt-3">
@@ -134,19 +137,27 @@
 
 
 @section('customJS')
+
 {!! $dataTable->scripts() !!}
   <script src="{{ asset('admintheme/assets/bundles/datatables/datatables.min.js') }}"></script>
   <script src="{{ asset('admintheme/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 
   <!-- Page Specific JS File -->
   <script src="{{ asset('admintheme/assets/js/page/datatables.js') }}"></script>
-
-
+  <script src="{{ asset('admintheme/assets/bundles/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script>
 
 $(document).ready(function () {
 
     var DataaTable = $('#dataaTable').DataTable();
+    function initializeDatepicker() {
+        $('.datetimepicker').daterangepicker({
+        locale: { format: 'DD-MM-YYYY hh:mm' },
+        singleDatePicker: true,
+        timePicker: true,
+        timePicker24Hour: true,
+      });
+    }
 
     $('#print-button').printPage();
 
@@ -156,14 +167,6 @@ $(document).ready(function () {
         $('html, body').animate({
             scrollTop: 0
         }, 'fast');
-    });
-
-    $(document).on('click' , 'excel-button' , function(e){
-        e.preventDefault();
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = '/entry-export'; // Replace with the actual URL for your export route
-        document.body.appendChild(iframe);
     });
 
     $(document).on('click', '.addRecordBtn', function (e) {
@@ -186,6 +189,9 @@ $(document).ready(function () {
                             .append('<div class="select2-link2"><button class="btns get-supplier close-select2"><i class="fa fa-plus-circle"></i> Add New</button></div>');
                         }
                     });
+                    initializeDatepicker();
+                    //$('.datetimepicker').daterangepicker('destroy');
+                    // Initialize DateRangePicker within modal
                 }
             }
         });
@@ -208,6 +214,7 @@ $(document).ready(function () {
                     setTimeout(() => {
                         $('.modal-backdrop').not(':first').remove();
                     }, 300);
+                    initializeDatepicker();
                 }
             }
         });

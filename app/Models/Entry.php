@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +17,7 @@ class Entry extends Model
         'supplier_id',
         'amount',
         'remark',
+        'entry_date',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -41,6 +43,19 @@ class Entry extends Model
         });
     }
 
+    // Define a mutator for the entry_date attribute
+    public function setEntryDateAttribute($value)
+    {
+        // Parse the incoming date string and convert it to the desired format
+        $this->attributes['entry_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->format('Y-m-d H:i:s');
+    }
+
+    // Define an accessor for the entry_date attribute
+    public function getEntryDateAttribute($value)
+    {
+        // Parse the database datetime value as Carbon instance and format it
+        return Carbon::parse($value)->format('d-m-Y h:i A');
+    }
 
     public function supplier()
     {

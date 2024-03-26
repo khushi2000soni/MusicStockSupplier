@@ -14,14 +14,14 @@ class CreateRequest extends FormRequest
         return true;
     }
 
-
     public function rules()
     {
         return [
-            'remark' => ['required','string'],
+            'remark' => ['nullable','string'],
             'amount' => ['required','numeric'],
+            'entry_date' => ['required','date'],
             'supplier_id'=>['required','numeric','exists:suppliers,id'],
-            'proof_document' => ['required','file','mimes:jpg,png,pdf,csv,xls,xlss,doc,docx','max:2048']
+            'proof_document' => ['nullable','file','mimes:jpg,png,pdf,csv,xls,xlss,doc,docx','max:2048']
         ];
     }
 
@@ -32,6 +32,7 @@ class CreateRequest extends FormRequest
             'remark.string' => 'The Remark should be a valid string.',
             'amount.required' => 'The Amount is required.',
             'supplier_id.required'=> 'The Supplier is required.',
+            'entry_date.required'=> 'The Date is required.',
         ];
     }
 }

@@ -14,12 +14,12 @@ class UpdateRequest extends FormRequest
         return true;
     }
 
-
     public function rules()
     {
         return [
-            'remark' => ['required','string'],
+            'remark' => ['nullable','string'],
             'amount' => ['required','numeric'],
+            'payment_date' => ['required','date'],
             'supplier_id'=>['required','numeric','exists:suppliers,id'],
             'payment_receipt_proof' => ['nullable','file','mimes:jpg,png,pdf,csv,xls,xlss,doc,docx','max:2048']
         ];

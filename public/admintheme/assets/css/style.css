@@ -13143,7 +13143,10 @@ width: 15%;
 width: 12%;
 }
 
-
+/*26-march-2024 */
+.daterangepicker {
+    z-index: 9000000 !important;
+}
 
 
 

@@ -4,6 +4,8 @@
 @section('customCss')
 <meta name="csrf-token" content="{{ csrf_token() }}" >
 <link rel="stylesheet" href="{{ asset('admintheme/assets/css/printView-datatable.css')}}">
+<link rel="stylesheet" href="{{ asset('admintheme/assets/bundles/bootstrap-daterangepicker/daterangepicker.css')}}">
+
 
 <style>
     /* @media print {
@@ -140,6 +142,7 @@
 
   <!-- Page Specific JS File -->
   <script src="{{ asset('admintheme/assets/js/page/datatables.js') }}"></script>
+  <script src="{{ asset('admintheme/assets/bundles/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
 
 <script>
@@ -147,6 +150,14 @@
 $(document).ready(function () {
 
     var DataaTable = $('#dataaTable').DataTable();
+    function initializeDatepicker() {
+        $('.datetimepicker').daterangepicker({
+        locale: { format: 'DD-MM-YYYY hh:mm' },
+        singleDatePicker: true,
+        timePicker: true,
+        timePicker24Hour: true,
+      });
+    }
 
     $('#print-button').printPage();
 
@@ -186,6 +197,7 @@ $(document).ready(function () {
                             .append('<div class="select2-link2"><button class="btns get-supplier close-select2"><i class="fa fa-plus-circle"></i> Add New</button></div>');
                         }
                     });
+                    initializeDatepicker();
                 }
             }
         });
@@ -208,6 +220,8 @@ $(document).ready(function () {
                     setTimeout(() => {
                         $('.modal-backdrop').not(':first').remove();
                     }, 300);
+
+                    initializeDatepicker();
                 }
             }
         });

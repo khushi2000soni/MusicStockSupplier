@@ -40,8 +40,8 @@ class EntryDataTable extends DataTable
                 $doc = !empty($entry->proof_document_url) ? '<a class="p-1 mx-1" href="' . $entry->proof_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
                 return $doc;
             })
-           ->editColumn('created_at', function ($entry) {
-               return $entry->created_at->format('d-m-Y h:i A');
+           ->editColumn('entry_date', function ($entry) {
+               return $entry->entry_date ?? '';
            })
            ->addColumn('action',function($entry){
                $action='';
@@ -57,8 +57,8 @@ class EntryDataTable extends DataTable
                }
                return $action;
            })
-           ->filterColumn('created_at', function ($query, $keyword) {
-               $query->whereRaw("DATE_FORMAT(entries.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
+           ->filterColumn('entry_date', function ($query, $keyword) {
+               $query->whereRaw("DATE_FORMAT(entries.entry_date,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
            })
            ->rawColumns(['action','proof_document']);
     }
@@ -99,7 +99,7 @@ class EntryDataTable extends DataTable
            Column::make('amount')->title(trans('quickadmin.entries.fields.amount')),
            Column::make('remark')->title(trans('quickadmin.entries.fields.remark')),
            Column::make('proof_document')->title(trans('quickadmin.entries.fields.proof_document'))->orderable(false)->searchable(false),
-           Column::make('created_at')->title(trans('quickadmin.entries.fields.created_at')),
+           Column::make('entry_date')->title(trans('quickadmin.entries.fields.created_at')),
            Column::computed('action')
            ->exportable(false)
            ->printable(false)

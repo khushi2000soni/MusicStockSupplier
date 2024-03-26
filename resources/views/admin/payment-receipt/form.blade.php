@@ -27,6 +27,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="payment_date">@lang('quickadmin.entries.fields.created_at')<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control datetimepicker" value="{{ isset($payment_receipt) ? $payment_receipt->payment_date : old('payment_date') }}" name="payment_date" id="payment_date" autocomplete="true">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">

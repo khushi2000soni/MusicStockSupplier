@@ -40,9 +40,9 @@ class PaymentReceiptDataTable extends DataTable
                 $doc = !empty($payment_receipt->payment_document_url) ? '<a class="p-1 mx-1" href="' . $payment_receipt->payment_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
                 return $doc;
             })
-           ->editColumn('created_at', function ($payment_receipt) {
-               return $payment_receipt->created_at->format('d-m-Y h:i A');
-           })
+            ->editColumn('payment_date', function ($entry) {
+                return $entry->payment_date ?? '';
+            })
            ->addColumn('action',function($payment_receipt){
                $action='';
                if (Gate::check('payment_receipt_edit')) {
@@ -57,8 +57,8 @@ class PaymentReceiptDataTable extends DataTable
                }
                return $action;
            })
-           ->filterColumn('created_at', function ($query, $keyword) {
-               $query->whereRaw("DATE_FORMAT(payment_receipts.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
+           ->filterColumn('payment_date', function ($query, $keyword) {
+               $query->whereRaw("DATE_FORMAT(payment_receipts.payment_date,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
            })
            ->rawColumns(['action','payment_receipt_proof']);
     }
@@ -99,7 +99,7 @@ class PaymentReceiptDataTable extends DataTable
            Column::make('amount')->title(trans('quickadmin.payment_receipts.fields.amount')),
            Column::make('remark')->title(trans('quickadmin.payment_receipts.fields.remark')),
            Column::make('payment_receipt_proof')->title(trans('quickadmin.payment_receipts.fields.proof_document'))->orderable(false)->searchable(false),
-           Column::make('created_at')->title(trans('quickadmin.payment_receipts.fields.created_at')),
+           Column::make('payment_date')->title(trans('quickadmin.payment_receipts.fields.created_at')),
            Column::computed('action')
            ->exportable(false)
            ->printable(false)

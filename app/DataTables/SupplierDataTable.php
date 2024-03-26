@@ -27,9 +27,6 @@ class SupplierDataTable extends DataTable
         ->editColumn('name',function($supplier){
             return $supplier->name ?? "";
         })
-        ->editColumn('opening_balance',function($supplier){
-            return $supplier->opening_balance ?? "";
-        })
         ->editColumn('created_at', function ($supplier) {
             return $supplier->created_at->format('d-m-Y h:i A');
         })
@@ -91,7 +88,6 @@ class SupplierDataTable extends DataTable
        return [
            Column::make('DT_RowIndex')->title(trans('quickadmin.qa_sn'))->orderable(false)->searchable(false),
            Column::make('name')->title(trans('quickadmin.suppliers.fields.name')),
-           Column::make('opening_balance')->title(trans('quickadmin.suppliers.fields.opening_balance')),
            Column::make('created_at')->title(trans('quickadmin.suppliers.fields.created_at')),
            Column::computed('action')
            ->exportable(false)

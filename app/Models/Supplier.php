@@ -14,7 +14,6 @@ class Supplier extends Model
 
     protected $fillable = [
         'name',
-        'opening_balance',
         'created_by',
         'updated_by',
         'deleted_by',

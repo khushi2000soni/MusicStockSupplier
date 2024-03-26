@@ -27,6 +27,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="entry_date">@lang('quickadmin.entries.fields.created_at')<span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control datetimepicker" value="{{ isset($entry) ? $entry->entry_date : old('entry_date') }}" name="entry_date" id="entry_date" autocomplete="true">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
