@@ -189,8 +189,6 @@ $(document).ready(function () {
                         }
                     });
                     initializeDatepicker();
-                    //$('.datetimepicker').daterangepicker('destroy');
-                    // Initialize DateRangePicker within modal
                 }
             }
         });

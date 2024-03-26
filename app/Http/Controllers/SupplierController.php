@@ -63,6 +63,8 @@ class SupplierController extends Controller
         $totalCreditAmount = $supplier->getTotalCreditAmount();
         //dd($totalDebitAmount , $totalCreditAmount);
         $closingBalance = $totalDebitAmount - $totalCreditAmount;
+        // Format the closing balance as a float with two decimal places
+        $closingBalance = number_format($closingBalance, 2);
         return $dataTable->with('supplier', $supplier->id)->render('admin.supplier.show', compact('supplier','totalDebitAmount','totalCreditAmount','closingBalance'));
     }
 

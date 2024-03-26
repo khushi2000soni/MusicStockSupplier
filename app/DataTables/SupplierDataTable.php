@@ -28,7 +28,7 @@ class SupplierDataTable extends DataTable
             return $supplier->name ?? "";
         })
         ->editColumn('created_at', function ($supplier) {
-            return $supplier->created_at->format('d-m-Y h:i A');
+            return $supplier->created_at->format('d-m-Y h:i:s A');
         })
         ->addColumn('action',function($supplier){
             $action='';
@@ -40,12 +40,12 @@ class SupplierDataTable extends DataTable
                 $editIcon = view('components.svg-icon', ['icon' => 'edit'])->render();
                 $action .= '<button class="btn btn-icon btn-info edit-supplier-btn p-1 mx-1" data-href="'.route('supplier.edit', $supplier->id).'">'.$editIcon.'</button>';
             }
-            if (Gate::check('supplier_delete')) {
-                $deleteIcon = view('components.svg-icon', ['icon' => 'delete'])->render();
-                $action .= '<form action="'.route('supplier.destroy', $supplier->id).'" method="POST" class="deleteForm m-1">
-                <button title="'.trans('quickadmin.qa_delete').'" class="btn btn-icon btn-danger record_delete_btn btn-sm">'.$deleteIcon.'</button>
-                </form>';
-            }
+            // if (Gate::check('supplier_delete')) {
+            //     $deleteIcon = view('components.svg-icon', ['icon' => 'delete'])->render();
+            //     $action .= '<form action="'.route('supplier.destroy', $supplier->id).'" method="POST" class="deleteForm m-1">
+            //     <button title="'.trans('quickadmin.qa_delete').'" class="btn btn-icon btn-danger record_delete_btn btn-sm">'.$deleteIcon.'</button>
+            //     </form>';
+            // }
             return $action;
         })
 
