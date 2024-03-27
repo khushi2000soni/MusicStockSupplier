@@ -34,7 +34,7 @@ class PaymentHistoryDataTable extends DataTable
         })
         ->addIndexColumn()
         ->addColumn('created_at', function ($data) {
-            return $data->created_at->format('d-m-Y H:i:A');
+            return $data->created_at->format('d-m-Y H:i A');
         })
         ->addColumn('particulars',function($data){
             if($data->table_type == "entries"){

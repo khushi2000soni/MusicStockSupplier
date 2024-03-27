@@ -149,15 +149,15 @@
                                 <td></td>
                                 <td></td>
                                 <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.current_balance')</td>
-                                <td>{{$totalDebitAmount ?? 0}}</td>
-                                <td class="text-center">{{$totalCreditAmount ?? 0}}</td>
+                                <td>{{$supplier->total_debit_amount ?? 0}}</td>
+                                <td class="text-center">{{$supplier->total_credit_amount ?? 0}}</td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.closing_balance')</td>
-                                <td>{{$closingBalance ?? 0}}</td>
+                                <td>{{$supplier->closing_balance ?? 0}}</td>
                                 <td class="text-center"></td>
                             </tr>
                             </tbody>

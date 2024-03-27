@@ -23,6 +23,12 @@ class Supplier extends Model
         'is_active',
     ];
 
+    protected $appends = [
+        'closing_balance',
+        'total_debit_amount',
+        'total_credit_amount'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -50,14 +56,23 @@ class Supplier extends Model
         return $this->hasMany(PaymentReceipt::class);
     }
 
-    public function getTotalDebitAmount()
+    public function getTotalDebitAmountAttribute()
     {
         return $this->entries()->sum('amount');
     }
 
-    public function getTotalCreditAmount()
+    public function getTotalCreditAmountAttribute()
     {
         return $this->payment_receipts()->sum('amount');
     }
+
+    public function getClosingBalanceAttribute()
+    {
+        $closingBalance = $this->total_debit_amount - $this->total_credit_amount;
+        $closingBalance = number_format($closingBalance, 2);
+        return $closingBalance;
+    }
+
+
 
 }

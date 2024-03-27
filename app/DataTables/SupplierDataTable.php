@@ -27,6 +27,9 @@ class SupplierDataTable extends DataTable
         ->editColumn('name',function($supplier){
             return $supplier->name ?? "";
         })
+        ->addColumn('closing_balance', function ($supplier) {
+            return $supplier->closing_balance ?? 0;
+        })
         ->editColumn('created_at', function ($supplier) {
             return $supplier->created_at->format('d-m-Y h:i:s A');
         })
@@ -76,8 +79,8 @@ class SupplierDataTable extends DataTable
            ->columns($this->getColumns())
            ->minifiedAjax()
            ->dom('lfrtip')
-           ->orderBy(1,'asc')
-           ->selectStyleSingle();
+           ->orderBy(1,'asc');
+        //    ->selectStyleSingle();
    }
 
    /**
@@ -88,6 +91,7 @@ class SupplierDataTable extends DataTable
        return [
            Column::make('DT_RowIndex')->title(trans('quickadmin.qa_sn'))->orderable(false)->searchable(false),
            Column::make('name')->title(trans('quickadmin.suppliers.fields.name')),
+           Column::make('closing_balance')->title(trans('quickadmin.suppliers.fields.closing_balance')),
            Column::make('created_at')->title(trans('quickadmin.suppliers.fields.created_at')),
            Column::computed('action')
            ->exportable(false)

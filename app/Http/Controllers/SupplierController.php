@@ -59,13 +59,7 @@ class SupplierController extends Controller
     public function show(PaymentHistoryDataTable $dataTable, Supplier $supplier)
     {
         abort_if(Gate::denies('supplier_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $totalDebitAmount = $supplier->getTotalDebitAmount();
-        $totalCreditAmount = $supplier->getTotalCreditAmount();
-        //dd($totalDebitAmount , $totalCreditAmount);
-        $closingBalance = $totalDebitAmount - $totalCreditAmount;
-        // Format the closing balance as a float with two decimal places
-        $closingBalance = number_format($closingBalance, 2);
-        return $dataTable->with('supplier', $supplier->id)->render('admin.supplier.show', compact('supplier','totalDebitAmount','totalCreditAmount','closingBalance'));
+        return $dataTable->with('supplier', $supplier->id)->render('admin.supplier.show', compact('supplier'));
     }
 
     public function edit(Supplier $supplier)

@@ -23,27 +23,30 @@ class EntryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-           ->addIndexColumn()
-           ->editColumn('supplier.name',function($entry){
-            $supplier = $entry->supplier;
-            return $supplier ? $supplier->name : '';
+            ->addIndexColumn()
+            ->editColumn('supplier.name',function($entry){
+                $supplier = $entry->supplier;
+                return $supplier ? $supplier->name : '';
+                })
+                ->editColumn('amount',function($entry){
+                    return $entry->amount ?? "";
+                })
+                ->editColumn('remark',function($entry){
+                    return $entry->remark ?? "";
+                })
+                ->addColumn('proof_document',function($entry){
+                    $doc='';
+                    $docIcon = view('components.svg-icon', ['icon' => 'add-order'])->render();
+                    $doc = !empty($entry->proof_document_url) ? '<a class="p-1 mx-1" href="' . $entry->proof_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
+                    return $doc;
+                })
+            ->editColumn('entry_date', function ($entry) {
+                return $entry->entry_date ?? '';
             })
-            ->editColumn('amount',function($entry){
-                return $entry->amount ?? "";
+            ->editColumn('created_at', function ($entry) {
+                return $entry->created_at->format('d-m-Y h:i A');
             })
-            ->editColumn('remark',function($entry){
-                return $entry->remark ?? "";
-            })
-            ->addColumn('proof_document',function($entry){
-                $doc='';
-                $docIcon = view('components.svg-icon', ['icon' => 'add-order'])->render();
-                $doc = !empty($entry->proof_document_url) ? '<a class="p-1 mx-1" href="' . $entry->proof_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
-                return $doc;
-            })
-           ->editColumn('entry_date', function ($entry) {
-               return $entry->entry_date ?? '';
-           })
-           ->addColumn('action',function($entry){
+            ->addColumn('action',function($entry){
                $action='';
                if (Gate::check('entry_edit')) {
                $editIcon = view('components.svg-icon', ['icon' => 'edit'])->render();
@@ -56,11 +59,14 @@ class EntryDataTable extends DataTable
                </form>';
                }
                return $action;
-           })
-           ->filterColumn('entry_date', function ($query, $keyword) {
-               $query->whereRaw("DATE_FORMAT(entries.entry_date,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
-           })
-           ->rawColumns(['action','proof_document']);
+            })
+            ->filterColumn('entry_date', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(entries.entry_date,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
+            })
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(entries.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
+            })
+            ->rawColumns(['action','proof_document']);
     }
 
    /**
@@ -99,7 +105,8 @@ class EntryDataTable extends DataTable
            Column::make('amount')->title(trans('quickadmin.entries.fields.amount')),
            Column::make('remark')->title(trans('quickadmin.entries.fields.remark')),
            Column::make('proof_document')->title(trans('quickadmin.entries.fields.proof_document'))->orderable(false)->searchable(false),
-           Column::make('entry_date')->title(trans('quickadmin.entries.fields.created_at')),
+           Column::make('entry_date')->title(trans('quickadmin.entries.fields.date')),
+           Column::make('created_at')->title(trans('quickadmin.entries.fields.created_at')),
            Column::computed('action')
            ->exportable(false)
            ->printable(false)

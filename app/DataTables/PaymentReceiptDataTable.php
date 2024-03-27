@@ -23,43 +23,49 @@ class PaymentReceiptDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-           ->addIndexColumn()
-           ->editColumn('supplier.name',function($payment_receipt){
-            $supplier = $payment_receipt->supplier;
-            return $supplier ? $supplier->name : '';
+            ->addIndexColumn()
+            ->editColumn('supplier.name',function($payment_receipt){
+                $supplier = $payment_receipt->supplier;
+                return $supplier ? $supplier->name : '';
+                })
+                ->editColumn('amount',function($payment_receipt){
+                    return $payment_receipt->amount ?? "";
+                })
+                ->editColumn('remark',function($payment_receipt){
+                    return $payment_receipt->remark ?? "";
+                })
+                ->addColumn('payment_receipt_proof',function($payment_receipt){
+                    $doc='';
+                    $docIcon = view('components.svg-icon', ['icon' => 'add-order'])->render();
+                    $doc = !empty($payment_receipt->payment_document_url) ? '<a class="p-1 mx-1" href="' . $payment_receipt->payment_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
+                    return $doc;
+                })
+                ->editColumn('payment_date', function ($entry) {
+                    return $entry->payment_date ?? '';
+                })
+                ->editColumn('created_at', function ($payment_receipt) {
+                    return $payment_receipt->created_at->format('d-m-Y h:i A');
+                })
+            ->addColumn('action',function($payment_receipt){
+                $action='';
+                if (Gate::check('payment_receipt_edit')) {
+                $editIcon = view('components.svg-icon', ['icon' => 'edit'])->render();
+                $action .= '<button class="btn btn-icon btn-info edit-payment-receipt-btn p-1 mx-1" data-href="'.route('payment-receipt.edit', $payment_receipt->id).'" >'.$editIcon.'</button>';
+                }
+                if (Gate::check('payment_receipt_delete')) {
+                $deleteIcon = view('components.svg-icon', ['icon' => 'delete'])->render();
+                $action .= '<form action="'.route('payment-receipt.destroy', $payment_receipt->id).'" method="POST" class="deleteForm m-1">
+                <button title="'.trans('quickadmin.qa_delete').'" class="btn btn-icon btn-danger record_delete_btn btn-sm">'.$deleteIcon.'</button>
+                </form>';
+                }
+                return $action;
             })
-            ->editColumn('amount',function($payment_receipt){
-                return $payment_receipt->amount ?? "";
+            ->filterColumn('payment_date', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(payment_receipts.payment_date,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
             })
-            ->editColumn('remark',function($payment_receipt){
-                return $payment_receipt->remark ?? "";
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(payment_receipts.created_at,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
             })
-            ->addColumn('payment_receipt_proof',function($payment_receipt){
-                $doc='';
-                $docIcon = view('components.svg-icon', ['icon' => 'add-order'])->render();
-                $doc = !empty($payment_receipt->payment_document_url) ? '<a class="p-1 mx-1" href="' . $payment_receipt->payment_document_url . '" target="_blank">' . $docIcon . '</a>' : 'No File !';
-                return $doc;
-            })
-            ->editColumn('payment_date', function ($entry) {
-                return $entry->payment_date ?? '';
-            })
-           ->addColumn('action',function($payment_receipt){
-               $action='';
-               if (Gate::check('payment_receipt_edit')) {
-               $editIcon = view('components.svg-icon', ['icon' => 'edit'])->render();
-               $action .= '<button class="btn btn-icon btn-info edit-payment-receipt-btn p-1 mx-1" data-href="'.route('payment-receipt.edit', $payment_receipt->id).'" >'.$editIcon.'</button>';
-               }
-               if (Gate::check('payment_receipt_delete')) {
-               $deleteIcon = view('components.svg-icon', ['icon' => 'delete'])->render();
-               $action .= '<form action="'.route('payment-receipt.destroy', $payment_receipt->id).'" method="POST" class="deleteForm m-1">
-               <button title="'.trans('quickadmin.qa_delete').'" class="btn btn-icon btn-danger record_delete_btn btn-sm">'.$deleteIcon.'</button>
-               </form>';
-               }
-               return $action;
-           })
-           ->filterColumn('payment_date', function ($query, $keyword) {
-               $query->whereRaw("DATE_FORMAT(payment_receipts.payment_date,'%d-%M-%Y') like ?", ["%$keyword%"]); //date_format when searching using date
-           })
            ->rawColumns(['action','payment_receipt_proof']);
     }
 
@@ -99,7 +105,8 @@ class PaymentReceiptDataTable extends DataTable
            Column::make('amount')->title(trans('quickadmin.payment_receipts.fields.amount')),
            Column::make('remark')->title(trans('quickadmin.payment_receipts.fields.remark')),
            Column::make('payment_receipt_proof')->title(trans('quickadmin.payment_receipts.fields.proof_document'))->orderable(false)->searchable(false),
-           Column::make('payment_date')->title(trans('quickadmin.payment_receipts.fields.created_at')),
+           Column::make('payment_date')->title(trans('quickadmin.payment_receipts.fields.date')),
+           Column::make('created_at')->title(trans('quickadmin.payment_receipts.fields.created_at')),
            Column::computed('action')
            ->exportable(false)
            ->printable(false)
