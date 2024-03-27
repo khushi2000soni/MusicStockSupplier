@@ -30,6 +30,40 @@ class SupplierController extends Controller
         return view('admin.supplier.print-supplier-list',compact('suppliers'))->render();
     }
 
+    public function printSupplierDetailView(Supplier $supplier)
+    {
+        abort_if(Gate::denies('supplier_print'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $alldata = Entry::selectRaw("'entries' AS table_type, entries.*")
+            ->where('supplier_id', $supplier->id)
+            ->unionAll(PaymentReceipt::selectRaw("'payment_receipts' AS table_type, payment_receipts.*")
+            ->where('supplier_id', $supplier->id))
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('admin.supplier.print-supplier-detail',compact('supplier','alldata'))->render();
+    }
+
+    public function SupplierTypeDetail(Request $request)
+    {
+        $id = $request->id ;
+        $type = $request->type;
+
+        switch ($type) {
+            case 'entries':
+                $data = Entry::where('id', $id)->first();
+                break;
+            case 'payment_receipts':
+                $data = PaymentReceipt::where('id', $id)->first();
+                break;
+            default:
+                $data = collect();
+                break;
+        }
+        //dd($data);
+        $html = view('admin.supplier.show-detail', compact('data','type'))->render();
+        return response()->json(['success' => true, 'htmlView' => $html]);
+    }
+
     // public function export(){
     //     abort_if(Gate::denies('supplier_export'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     //     $filename = 'Supplier-all';

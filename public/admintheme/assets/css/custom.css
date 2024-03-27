@@ -157,6 +157,17 @@ table.dataTable tbody tr td {
     gap: 10px;
 }
 
+.modal_open_btn {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+    transition: all ease-in-out 0.3s;
+}
+
+.modal_open_btn:hover {
+    color: #db5102;
+}
+
 @media screen and (max-width: 767px){
 	.dashboard-card .diffrent-cards .card{
 		margin-bottom: 10px;

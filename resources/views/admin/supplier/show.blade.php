@@ -135,6 +135,11 @@
                                     <button type="button" class="addnew-btn sm_btn circlebtn" id="deleteSelectedPaymentHistory" data-href="" title="@lang('quickadmin.qa_delete')"><x-svg-icon icon="delete" /></button>
                                     @endcan
                                 </div>
+                                <div class="col-auto px-md-1 pr-1">
+                                    @can('supplier_print')
+                                    <a href="{{ route('supplier.detail.print',$supplier->id) }}" class="btn printbtn h-10 col circlebtn"  id="print-button" title="@lang('quickadmin.qa_print')"> <x-svg-icon icon="print" /></a>
+                                    @endcan
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -169,7 +174,7 @@
           </div>
         </div>
   </section>
-
+  <div class="popup_render_div"></div>
 @endsection
 
 
@@ -182,6 +187,7 @@
 
 <script>
 $(document).ready(function () {
+    $('#print-button').printPage();
     var DataaTable = $('#dataaTable').DataTable();
 
     $(document).on('click', '#deleteSelectedPaymentHistory', function(e) {
@@ -255,6 +261,24 @@ $(document).ready(function () {
             // Uncheck all checkboxes in the table rows
             $('.dt_checkbox').prop('checked', false);
         }
+    });
+
+    $(document).on("click", ".supplier-type-detail", function () {
+        var hrefUrl = $(this).attr('data-href');
+        $('.modal-backdrop').remove();
+        $.ajax({
+            type: 'get',
+            url: hrefUrl,
+            dataType: 'json',
+            success: function (response) {
+                //$('#preloader').css('display', 'none');
+                if(response.success) {
+                    $('.popup_render_div').html(response.htmlView);
+                    $('#supplierTypeDetailMaodal').modal('show');
+                    $('#supplierTypeDetailMaodal').css('z-index', '99999');
+                }
+            }
+        });
     });
 });
 </script>

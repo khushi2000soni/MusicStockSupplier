@@ -107,6 +107,7 @@ return [
 		'fields' 	=> [
 			'add' 	=> 'Add New',
 			'list' 	=> 'Supplier List',
+            'detail' 	=> 'Supplier Payment Detail',
 		],
 	],
 
@@ -127,7 +128,7 @@ return [
 			'email' 		=> 'Email',
             'ph_num'         =>'Phone No.',
 			'action' 		=> 'Action',
-            'created_at'    =>'Date',
+            'created_at'    =>'Created At',
             'date'          =>'Date',
 			'created_by' 	=> 'Created By',
 			'is_type'		=> 'Type',

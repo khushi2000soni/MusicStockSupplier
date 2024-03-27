@@ -48,6 +48,8 @@ Route::middleware(['auth','PreventBackHistory'])->group(function () {
     Route::resource('supplier',SupplierController::class);
 
     Route::get('/supplier-printView',[SupplierController::class,'printView'])->name('supplier.print');
+    Route::get('supplier/detail-printView/{supplier}',[SupplierController::class,'printSupplierDetailView'])->name('supplier.detail.print');
+    Route::get('supplier/particulat/detail', [SupplierController::class,'SupplierTypeDetail'])->name('supplier.type.detail');
     // Route::get('/supplier-export',[SupplierController::class,'export'])->name('supplier.export');
 
 

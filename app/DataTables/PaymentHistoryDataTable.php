@@ -33,8 +33,8 @@ class PaymentHistoryDataTable extends DataTable
             return $checkbox;
         })
         ->addIndexColumn()
-        ->addColumn('created_at', function ($data) {
-            return $data->created_at->format('d-m-Y H:i A');
+        ->addColumn('date', function ($data) {
+            return $data->entry_date ?? "";
         })
         ->addColumn('particulars',function($data){
             if($data->table_type == "entries"){
@@ -46,7 +46,13 @@ class PaymentHistoryDataTable extends DataTable
             else{
                 $particulars = " ";
             }
-            return $particulars;
+
+            $routeParams = ['id' => $data->id,'type' => $data->table_type];
+                $name = '<button class="supplier-type-detail modal_open_btn" data-href="' . route('supplier.type.detail', $routeParams) . '">' . $particulars . '</button>';
+            return $name;
+        })
+        ->addColumn('created_at', function ($data) {
+            return $data->created_at->format('d-m-Y H:i A');
         })
         ->addColumn('remark',function($data){
 
@@ -58,7 +64,7 @@ class PaymentHistoryDataTable extends DataTable
         ->addColumn('credit',function($data){
             return $data->table_type == "payment_receipts" ? $data->amount : "";
         })
-        ->rawColumns(['checkbox']);
+        ->rawColumns(['checkbox','particulars']);
     }
 
     public function query(Supplier $supplier): QueryBuilder
@@ -76,10 +82,10 @@ class PaymentHistoryDataTable extends DataTable
            ->setTableId('suppliers-table')
            ->parameters([
             'responsive' => true,
-            //'pageLength' => 50,
+            'pageLength' => 50,
             'select' => ['style' => 'multi'], // Enable multi-select
             'selector' => 'td:first-child input[type="checkbox"]',
-            //'lengthMenu' => [[10, 25, 50, 70, 100, -1], [10, 25, 50, 70, 100, 'All']],
+            'lengthMenu' => [[10, 25, 50, 70, 100, -1], [10, 25, 50, 70, 100, 'All']],
             'columnDefs' => [ // Optional, for explicit checkboxes definition lfrtip
                 [
                     'targets' => 0,
@@ -90,7 +96,6 @@ class PaymentHistoryDataTable extends DataTable
            ->columns($this->getColumns())
            ->minifiedAjax()
            ->dom('');
-           //->orderBy(2,'desc');
    }
 
    /**
@@ -101,8 +106,9 @@ class PaymentHistoryDataTable extends DataTable
        return [
             Column::make('checkbox')->title('<label class="custom-checkbox"><input type="checkbox" id="dt_cb_all" ><span></span></label>')->orderable(false)->searchable(false),
             Column::make('DT_RowIndex')->title(trans('quickadmin.qa_sn'))->orderable(false)->searchable(false)->visible(false),
-            Column::make('created_at')->title(trans('quickadmin.suppliers.fields.created_at'))->orderable(false)->searchable(false),
+            Column::make('date')->title(trans('quickadmin.suppliers.fields.date'))->orderable(false)->searchable(false),
             Column::make('particulars')->title(trans('quickadmin.suppliers.particulars'))->orderable(false)->searchable(false),
+            Column::make('created_at')->title(trans('quickadmin.suppliers.fields.created_at'))->orderable(false)->searchable(false),
             Column::make('remark')->title(trans('quickadmin.suppliers.remark'))->orderable(false)->searchable(false),
             Column::make('debit')->title(trans('quickadmin.suppliers.debit'))->orderable(false)->searchable(false),
             Column::make('credit')->title(trans('quickadmin.suppliers.credit'))->orderable(false)->searchable(false),
