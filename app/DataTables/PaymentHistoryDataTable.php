@@ -21,7 +21,7 @@ class PaymentHistoryDataTable extends DataTable
 
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $query = $query->orderBy('created_at', 'desc');
+        $query = $query->orderBy('created_at', 'asc');
         return (new EloquentDataTable($query))
         ->addColumn('checkbox', function ($data) {
             $checkbox = "";

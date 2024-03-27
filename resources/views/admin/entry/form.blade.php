@@ -55,7 +55,7 @@
                     </a>
                 @endif
                 <div class="input-group">
-                    <input type="file" class="form-control" name="proof_document" id="proof_document">
+                    <input type="file" class="form-control" name="proof_document" id="proof_document" accept="image/*,.pdf">
                 </div>
             </div>
         </div>

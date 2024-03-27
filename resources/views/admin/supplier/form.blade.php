@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label for="name">@lang('quickadmin.suppliers.fields.name')<span class="text-danger">*</span></label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="name" value="{{ isset($supplier) ? $supplier->name : old('name') }}" id="name" autocomplete="true" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
+                    <input type="text" class="form-control" name="name" value="{{ isset($supplier) ? $supplier->name : old('name') }}" id="name" autocomplete="true" oninput="this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, '');">
                 </div>
             </div>
         </div>

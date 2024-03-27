@@ -21,7 +21,7 @@ class UpdateRequest extends FormRequest
             'remark' => ['nullable','string'],
             'amount' => ['required','numeric'],
             'supplier_id'=>['required','numeric','exists:suppliers,id'],
-            'proof_document' => ['nullable','file','mimes:jpg,png,pdf,csv,xls,xlss,doc,docx','max:2048']
+            'proof_document' => ['nullable','file','mimes:jpg,png,pdf','max:2048']
         ];
     }
 
