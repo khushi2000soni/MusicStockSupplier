@@ -95,8 +95,8 @@ class UserController extends Controller
     public function staffUpdatePass(Request $request, User $staff){
 
         $validated = $request->validate([
-            'password'   => ['required', 'string', 'min:4','confirmed', 'different:currentpassword'],
-            'password_confirmation' => ['required','min:4','same:password'],
+            'password'   => ['required', 'string', 'min:8','confirmed', 'different:currentpassword'],
+            'password_confirmation' => ['required','min:8','same:password'],
 
         ], getCommonValidationRuleMsgs());
 
@@ -174,9 +174,9 @@ class UserController extends Controller
     {
         $userId = auth()->user()->id;
         $validated = $request->validate([
-            'currentpassword'  => ['required', 'string','min:4',new MatchOldPassword],
-            'password'   => ['required', 'string', 'min:4','confirmed', 'different:currentpassword'],
-            'password_confirmation' => ['required','min:4','same:password'],
+            'currentpassword'  => ['required', 'string','min:8',new MatchOldPassword],
+            'password'   => ['required', 'string', 'min:8','confirmed', 'different:currentpassword'],
+            'password_confirmation' => ['required','min:8','same:password'],
 
         ], getCommonValidationRuleMsgs());
 

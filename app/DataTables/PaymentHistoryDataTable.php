@@ -18,6 +18,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class PaymentHistoryDataTable extends DataTable
 {
+    protected $globalVariable;
 
     public function dataTable($query)
     {
@@ -62,7 +63,7 @@ class PaymentHistoryDataTable extends DataTable
                 $proofdoc = !empty($data->payment_document_url) ? $data->payment_document_url : null;
             }
 
-            $name = !is_null($proofdoc) ? '<a class="p-1 mx-1" href="' . $proofdoc . '" target="_blank">' .$particulars. '</a>' : ' No File!';
+            $name = !is_null($proofdoc) ? '<a class="open_new_tab_doc" href="' . $proofdoc . '" target="_blank">' .$particulars. '</a>' : $particulars;
             return $name;
         })
         ->addColumn('created_at', function ($data) {
@@ -77,6 +78,23 @@ class PaymentHistoryDataTable extends DataTable
         })
         ->addColumn('credit',function($data){
             return $data->table_type == "payment_receipts" ? $data->amount : "";
+        })
+        ->addColumn('balance',function($data){
+
+            $globalValue = $this->globalVariable;
+            if($data->table_type == "entries"){
+                $globalValue += $data->amount??0;
+            }else{
+                $globalValue -= $data->amount??0;
+            }
+
+            if (is_numeric($globalValue)) {
+                // Format the numeric value with two decimal places, even if the value after the decimal point is zero
+                $globalValue = number_format($globalValue, 2, '.', '');
+            }
+
+            $this->globalVariable = $globalValue;
+            return $globalValue;
         })
         ->rawColumns(['checkbox','particulars']);
     }
@@ -131,6 +149,7 @@ class PaymentHistoryDataTable extends DataTable
                 Column::make('remark')->title(trans('quickadmin.suppliers.remark'))->orderable(false)->searchable(false),
                 Column::make('debit')->title(trans('quickadmin.suppliers.debit'))->orderable(false)->searchable(false),
                 Column::make('credit')->title(trans('quickadmin.suppliers.credit'))->orderable(false)->searchable(false),
+                Column::make('balance')->title(trans('quickadmin.suppliers.balance'))->orderable(false)->searchable(false)->addClass('text-center'),
         ];
     }
 

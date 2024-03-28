@@ -88,13 +88,14 @@
         min-width: 20px !important;
         max-width: 20px !important;
     }
-    .supplier-table1 thead th:last-child{
+    .supplier-table1 thead th:last-child,
+    .supplier-table1 thead th:nth-last-of-type(2){
         min-width: 10rem !important;
         width: 10rem !important;
         max-width: 10rem !important;
     }
-    .supplier-table1 thead th:nth-last-of-type(2),
-    .supplier-table1 thead th:nth-last-of-type(3){
+    .supplier-table1 thead th:nth-last-of-type(3),
+    .supplier-table1 thead th:nth-last-of-type(4){
         min-width: 12rem !important;
         width: 12rem !important;
         max-width: 12rem !important;
@@ -103,13 +104,14 @@
         padding-left: .75rem !important;
         padding-right: .75rem !important;
     }
-    .openingbalancetable tbody td:last-child{
+    .openingbalancetable tbody td:last-child,
+    .openingbalancetable tbody td:nth-last-of-type(2){
         min-width: calc(10rem + 1.55rem) !important;
         width: calc(10rem + 1.55rem) !important;
         max-width: calc(10rem + 1.55rem) !important;
     }
-    .openingbalancetable tbody td:nth-last-of-type(2),
-    .openingbalancetable tbody td:nth-last-of-type(3){
+    .openingbalancetable tbody td:nth-last-of-type(3),
+    .openingbalancetable tbody td:nth-last-of-type(4){
         min-width: calc(12rem + 1.5rem) !important;
         width: calc(12rem + 1.5rem) !important;
         max-width: calc(12rem + 1.5rem) !important;
@@ -137,8 +139,10 @@
                                 </div>
                                 <div class="col-auto px-md-1 pr-1">
                                     @can('supplier_print')
-                                    {{-- <div class="print_file_view">aasdfasdlkfjasdlkf </div> --}}
-                                    <a href="{{ route('supplier.detail.print',$supplier->id) }}" class="btn printbtn h-10 col circlebtn"  id="print-button" title="@lang('quickadmin.qa_print')"> <x-svg-icon icon="print" /></a>
+                                    <div class="print_file_view btn printbtn h-10 col circlebtn"><x-svg-icon icon="print" /> </div>
+
+
+                                    <a href="{{ route('supplier.detail.print',$supplier->id) }}" class=""  id="print-button" title="@lang('quickadmin.qa_print')"> </a>
                                     @endcan
                                 </div>
                             </div>
@@ -156,7 +160,8 @@
                                 <td></td>
                                 <td class="textright font-weight-bold">@lang('quickadmin.suppliers.fields.current_balance')</td>
                                 <td>{{$supplier->total_debit_amount ?? 0}}</td>
-                                <td class="text-center">{{$supplier->total_credit_amount ?? 0}}</td>
+                                <td>{{$supplier->total_credit_amount ?? 0}}</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -190,8 +195,10 @@
 $(document).ready(function () {
 
     $(document).on('click','.print_file_view',function(){
-        console.log("yweeasdf");
-        $("#print-button").trigger('click');
+        // document.querySelectorAll('.open_new_tab_doc').forEach(function(element) {
+        //     window.open('https://example.com', '_blank');
+        // });
+          $("#print-button").trigger('click');
     })
 
 

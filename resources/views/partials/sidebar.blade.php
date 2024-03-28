@@ -8,12 +8,12 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Main</li>
-        <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
+        {{-- <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class="nav-link">
                 <x-side-bar-svg-icon icon="dashboard" />
                 <span>@lang('quickadmin.qa_dashboard')</span>
             </a>
-        </li>
+        </li> --}}
 
         {{-- @can('role_access')
         <li class="{{ Request::is('roles*') ? 'active' : '' }}">

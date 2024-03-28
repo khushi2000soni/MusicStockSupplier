@@ -38,7 +38,7 @@ class SupplierController extends Controller
             ->where('supplier_id', $supplier->id)
             ->unionAll(PaymentReceipt::selectRaw("'payment_receipts' AS table_type, payment_receipts.*")
             ->where('supplier_id', $supplier->id))
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'asc')
             ->get();
         return view('admin.supplier.print-supplier-detail',compact('supplier','alldata'))->render();
     }

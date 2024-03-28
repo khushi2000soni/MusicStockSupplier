@@ -25,9 +25,12 @@
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.fields.date')</th>
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.particulars')</th>
                     <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.debit')</th>
-                    <th style="padding: 10px;border: 1px solid #000;" align="center">@lang('quickadmin.suppliers.credit')</th>
-
+                    <th style="padding: 10px;border: 1px solid #000;border-right: none;" align="center">@lang('quickadmin.suppliers.credit')</th>
+                    <th style="padding: 10px;border: 1px solid #000;" align="center">@lang('quickadmin.suppliers.balance')</th>
                 </tr>
+                @php
+                    $balanceCal = 0;
+                @endphp
                 @forelse ($alldata as $key => $data)
                 <tr>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="left">{{ $key + 1 }}</td>
@@ -35,6 +38,23 @@
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->table_type == "entries" ? "Entry" : "Payment Receipt" }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->table_type == "entries" ? $data->amount : "" }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $data->table_type == "payment_receipts" ? $data->amount : "" }}</td>
+                    <td style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">
+                        @php
+
+                            if($data->table_type == "entries"){
+                                $balanceCal += $data->amount??0;
+                            }else{
+                                $balanceCal -= $data->amount??0;
+                            }
+
+                            if (is_numeric($balanceCal)) {
+                                // Format the numeric value with two decimal places, even if the value after the decimal point is zero
+                                $balanceCal = number_format($balanceCal, 2, '.', '');
+                            }
+                        @endphp
+
+                        {{ $balanceCal }}
+                    </td>
                 </tr>
                 @empty
                 <tr>
@@ -45,10 +65,12 @@
                     <th colspan="3" style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="right">@lang('quickadmin.suppliers.fields.current_balance')</th>
                     <th style="padding: 10px;border: 1px solid #000;border-top: none;border-right: none;" align="center">{{ $supplier->total_debit_amount }}</th>
                     <th style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->total_credit_amount }}</th>
+                    <th style="padding: 10px;border: 1px solid #000;border-top: none;" align="center"></th>
                 </tr>
                 <tr>
                     <th colspan="3" style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="right">@lang('quickadmin.suppliers.fields.closing_balance')</th>
                     <th colspan="2" style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->closing_balance }}</th>
+                    <th style="padding: 10px;border: 1px solid #000;border-top: none;" align="center"></th>
                 </tr>
             </tbody>
         </table>
