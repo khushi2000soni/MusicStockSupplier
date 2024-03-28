@@ -252,7 +252,8 @@ $(document).ready(function () {
                     var message = response['message'];
                     var title = "{{ trans('quickadmin.suppliers.payment_history') }}";
                     showToaster(title,alertType,message);
-                    DataaTable.ajax.reload();
+                    location.reload();
+                    //DataaTable.ajax.reload();
                 }
                 else {
                     swal("{{ trans('quickadmin.suppliers.payment_history') }}", 'Some Mistake is there.', 'error');
@@ -295,7 +296,10 @@ $(document).ready(function () {
             }
         });
     });
+
 });
+
+
 </script>
 
 
