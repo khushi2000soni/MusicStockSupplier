@@ -34,7 +34,7 @@
                 @forelse ($alldata as $key => $data)
                 <tr>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="left">{{ $key + 1 }}</td>
-                    <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->entry_date ??  '' }}</td>
+                    <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->table_type == "entries" ? $data->entry_date : $data->payment_date }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->table_type == "entries" ? "Entry" : "Payment Receipt" }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->table_type == "entries" ? $data->amount : "" }}</td>
                     <td style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="center">{{ $data->table_type == "payment_receipts" ? $data->amount : "" }}</td>

@@ -106,10 +106,10 @@ class PaymentHistoryDataTable extends DataTable
         // $data = $data->unionAll(PaymentReceipt::selectRaw("'payment_receipts' AS table_type, payment_receipts.*")
         //         ->where('supplier_id', $this->supplier));
         // return $data->newQuery();
-        $entriesData = Entry::selectRaw("'entries' AS table_type, entries.*")->where('supplier_id', $this->supplier);
-        $paymentReceiptsData = PaymentReceipt::selectRaw("'payment_receipts' AS table_type, payment_receipts.*")->where('supplier_id', $this->supplier);
+        $entriesData = Entry::selectRaw("'entries' AS table_type,entries.entry_date AS transaction_date, entries.*")->where('supplier_id', $this->supplier);
+        $paymentReceiptsData = PaymentReceipt::selectRaw("'payment_receipts' AS table_type,payment_receipts.payment_date As transaction_date, payment_receipts.*")->where('supplier_id', $this->supplier);
         $data = collect($entriesData->get())->merge($paymentReceiptsData->get());
-        $data= $data->sortBy('created_at');
+        $data= $data->sortBy('transaction_date');
         return  $data;
     }
 

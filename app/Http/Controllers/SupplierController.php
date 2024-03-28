@@ -34,12 +34,16 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_print'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $alldata = Entry::selectRaw("'entries' AS table_type, entries.*")
-            ->where('supplier_id', $supplier->id)
-            ->unionAll(PaymentReceipt::selectRaw("'payment_receipts' AS table_type, payment_receipts.*")
-            ->where('supplier_id', $supplier->id))
-            ->orderBy('created_at', 'asc')
-            ->get();
+        // $alldata = Entry::selectRaw("'entries' AS table_type,entries.entry_date AS transaction_date, entries.*")
+        //     ->where('supplier_id', $supplier->id)
+        //     ->unionAll(PaymentReceipt::selectRaw("'payment_receipts' AS table_type,payment_receipts.payment_date As transaction_date, payment_receipts.*")
+        //     ->where('supplier_id', $supplier->id))
+        //     ->orderBy('transaction_date', 'asc')
+        //     ->get();
+        $entriesData = Entry::selectRaw("'entries' AS table_type,entries.entry_date AS transaction_date, entries.*")->where('supplier_id', $supplier->id);
+        $paymentReceiptsData = PaymentReceipt::selectRaw("'payment_receipts' AS table_type,payment_receipts.payment_date As transaction_date, payment_receipts.*")->where('supplier_id', $supplier->id);
+        $alldata = collect($entriesData->get())->merge($paymentReceiptsData->get());
+        $alldata= $alldata->sortBy('transaction_date');
         return view('admin.supplier.print-supplier-detail',compact('supplier','alldata'))->render();
     }
 
