@@ -120,15 +120,7 @@ class PaymentHistoryDataTable extends DataTable
             ->parameters([
                 'responsive' => true,
                 'pageLength' => 50,
-                'select' => ['style' => 'multi'], // Enable multi-select
-                'selector' => 'td:first-child input[type="checkbox"]',
                 'lengthMenu' => [[10, 25, 50, 70, 100, -1], [10, 25, 50, 70, 100, 'All']],
-                'columnDefs' => [ // Optional, for explicit checkboxes definition lfrtip
-                    [
-                        'targets' => 0,
-                        'checkboxes' => true,
-                    ]
-                ]
                 ])
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -141,7 +133,7 @@ class PaymentHistoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-                Column::make('checkbox')->title('<label class="custom-checkbox"><input type="checkbox" id="dt_cb_all" ><span></span></label>')->orderable(false)->searchable(false),
+                Column::computed('checkbox')->title('<label class="custom-checkbox"><input type="checkbox" id="dt_cb_all" ><span></span></label>')->titleAttr('')->orderable(false)->searchable(false),
                 Column::make('DT_RowIndex')->title(trans('quickadmin.qa_sn'))->orderable(false)->searchable(false)->visible(false),
                 Column::make('date')->title(trans('quickadmin.suppliers.fields.date'))->orderable(false)->searchable(false),
                 Column::make('particulars')->title(trans('quickadmin.suppliers.particulars'))->orderable(false)->searchable(false),
