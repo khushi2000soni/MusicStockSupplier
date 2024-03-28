@@ -30,14 +30,14 @@ class PaymentReceipt extends Model
     public function setPaymentDateAttribute($value)
     {
         // Parse the incoming date string and convert it to the desired format
-        $this->attributes['payment_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->format('Y-m-d H:i:s');
+        $this->attributes['payment_date'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
     }
 
     // Define an accessor for the payment_date attribute
     public function getPaymentDateAttribute($value)
     {
         // Parse the database datetime value as Carbon instance and format it
-        return Carbon::parse($value)->format('d-m-Y h:i A');
+        return Carbon::parse($value)->format('d-m-Y');
     }
 
     protected static function boot()

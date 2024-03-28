@@ -90,7 +90,7 @@ class PaymentReceiptDataTable extends DataTable
            ->columns($this->getColumns())
            ->minifiedAjax()
            ->dom('lfrtip')
-           ->orderBy(5,'desc')
+           ->orderBy(6,'desc')
            ->selectStyleSingle();
    }
 

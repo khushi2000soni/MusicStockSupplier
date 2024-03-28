@@ -151,10 +151,10 @@ $(document).ready(function () {
     var DataaTable = $('#dataaTable').DataTable();
     function initializeDatepicker() {
         $('.datetimepicker').daterangepicker({
-        locale: { format: 'DD-MM-YYYY hh:mm' },
+        locale: { format: 'DD-MM-YYYY' },
         singleDatePicker: true,
-        timePicker: true,
-        timePicker24Hour: true,
+        timePicker: false,
+        timePicker24Hour: false,
       });
     }
 

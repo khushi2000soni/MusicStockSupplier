@@ -47,14 +47,14 @@ class Entry extends Model
     public function setEntryDateAttribute($value)
     {
         // Parse the incoming date string and convert it to the desired format
-        $this->attributes['entry_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->format('Y-m-d H:i:s');
+        $this->attributes['entry_date'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
     }
 
     // Define an accessor for the entry_date attribute
     public function getEntryDateAttribute($value)
     {
         // Parse the database datetime value as Carbon instance and format it
-        return Carbon::parse($value)->format('d-m-Y h:i A');
+        return Carbon::parse($value)->format('d-m-Y');
     }
 
     public function supplier()
