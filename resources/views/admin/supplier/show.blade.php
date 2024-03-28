@@ -137,6 +137,7 @@
                                 </div>
                                 <div class="col-auto px-md-1 pr-1">
                                     @can('supplier_print')
+                                    {{-- <div class="print_file_view">aasdfasdlkfjasdlkf </div> --}}
                                     <a href="{{ route('supplier.detail.print',$supplier->id) }}" class="btn printbtn h-10 col circlebtn"  id="print-button" title="@lang('quickadmin.qa_print')"> <x-svg-icon icon="print" /></a>
                                     @endcan
                                 </div>
@@ -187,6 +188,13 @@
 
 <script>
 $(document).ready(function () {
+
+    $(document).on('click','.print_file_view',function(){
+        console.log("yweeasdf");
+        $("#print-button").trigger('click');
+    })
+
+
     $('#print-button').printPage();
     var DataaTable = $('#dataaTable').DataTable();
 
