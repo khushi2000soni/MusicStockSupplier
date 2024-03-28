@@ -64,12 +64,12 @@
                 <tr>
                     <th colspan="3" style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="right">@lang('quickadmin.suppliers.fields.current_balance')</th>
                     <th style="padding: 10px;border: 1px solid #000;border-top: none;border-right: none;" align="center">{{ $supplier->total_debit_amount }}</th>
-                    <th style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->total_credit_amount }}</th>
-                    <th style="padding: 10px;border: 1px solid #000;border-top: none;" align="center"></th>
+                    <th style="padding: 10px;border: 1px solid #000;border-top: none;border-right: none;" align="center">{{ $supplier->total_credit_amount }}</th>
+                    <th style="padding: 10px;border: 1px solid #000;border-top: none;border-right: none;" align="center"></th>
                 </tr>
                 <tr>
                     <th colspan="3" style="padding: 10px;border: 1px solid #000;border-right: none;border-top: none;" align="right">@lang('quickadmin.suppliers.fields.closing_balance')</th>
-                    <th colspan="2" style="padding: 10px;border: 1px solid #000;border-top: none;" align="center">{{ $supplier->closing_balance }}</th>
+                    <th colspan="2" style="padding: 10px;border: 1px solid #000;border-top: none;border-right: none;" align="center">{{ $supplier->closing_balance }}</th>
                     <th style="padding: 10px;border: 1px solid #000;border-top: none;" align="center"></th>
                 </tr>
             </tbody>
